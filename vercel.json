@@ -1,6 +1,8 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/:path*", "destination": "https://ironbark-solutions.vercel.app/:path*" }
+    {
+      "source": "/(.*)",
+      "destination": "https://ironbark-solutions.vercel.app/$1"
+    }
   ]
 }
