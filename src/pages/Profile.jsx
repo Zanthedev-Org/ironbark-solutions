@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, Package, Heart, MapPin, Bell, Settings, LogOut, ChevronRight, ShoppingCart, Star, ShieldCheck, Camera, Loader2, Upload, Clock } from 'lucide-react';
+import { User, Package, Heart, MapPin, Bell, Settings, LogOut, ChevronRight, ShoppingCart, Star, ShieldCheck, Camera, Loader2, Upload, Clock, Mail, AlertTriangle } from 'lucide-react';
 import { uploadImage } from '../utils/cloudinaryService';
 import { useApp } from '../context/AppContext';
-import { db } from '../firebase';
+import { auth, db } from '../firebase';
+import { sendEmailVerification } from 'firebase/auth';
 import { doc, updateDoc, collection, query, where, orderBy, getDocs } from 'firebase/firestore';
 import { formatCurrency } from './Home';
 
@@ -55,6 +56,32 @@ export default function Profile() {
   });
   const [isSavingSettings, setIsSavingSettings] = useState(false);
   const [settingsSaved, setSettingsSaved] = useState(false);
+  const [resendingVerification, setResendingVerification] = useState(false);
+  const [verificationSent, setVerificationSent] = useState(false);
+
+  const isEmailVerified = Boolean(auth.currentUser?.emailVerified || user?.emailVerified);
+
+  const handleResendVerification = async () => {
+    const targetUser = auth.currentUser;
+    if (!targetUser) {
+      showToast('You must be logged in to resend verification.', 'error');
+      return;
+    }
+    setResendingVerification(true);
+    try {
+      await sendEmailVerification(targetUser);
+      setVerificationSent(true);
+      showToast('Verification email resent! Please check your inbox and spam folder.');
+    } catch (err) {
+      if (err?.code === 'auth/too-many-requests') {
+        showToast('Please wait a moment before requesting another email.', 'error');
+      } else {
+        showToast(err?.message || 'Failed to resend verification email.', 'error');
+      }
+    } finally {
+      setResendingVerification(false);
+    }
+  };
 
   // Sync form whenever user loads
   useEffect(() => {
@@ -321,6 +348,59 @@ export default function Profile() {
 
         {/* Main Content */}
         <div>
+          {/* Email Verification Banner */}
+          {!isEmailVerified && (
+            <div style={{
+              background: 'rgba(255, 152, 0, 0.1)',
+              border: '1.5px solid #FF9800',
+              borderRadius: 'var(--radius-md)',
+              padding: '16px 20px',
+              marginBottom: '24px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '14px'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: '260px', flex: 1 }}>
+                <AlertTriangle size={24} color="#FF9800" style={{ flexShrink: 0 }} />
+                <div>
+                  <h4 style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-h)', margin: 0 }}>
+                    Email Verification Pending
+                  </h4>
+                  <p style={{ fontSize: '13px', color: 'var(--text-m)', margin: '3px 0 0' }}>
+                    A verification link was sent to <strong>{user.email}</strong>. Check your inbox or click resend below.
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={handleResendVerification}
+                disabled={resendingVerification}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: '#FF9800',
+                  color: '#000',
+                  padding: '9px 18px',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: '13px',
+                  fontWeight: 700,
+                  border: 'none',
+                  cursor: resendingVerification ? 'not-allowed' : 'pointer',
+                  opacity: resendingVerification ? 0.7 : 1,
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {resendingVerification ? (
+                  <><Loader2 className="spinner" size={14} /> Sending...</>
+                ) : (
+                  <><Mail size={14} /> {verificationSent ? 'Sent! Resend again' : 'Resend Verification Link'}</>
+                )}
+              </button>
+            </div>
+          )}
           {activeTab === 'orders' && (
             <div>
               <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, color: 'var(--text-h)', marginBottom: '20px' }}>My Orders</h2>
@@ -574,9 +654,43 @@ export default function Profile() {
                   </div>
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-m)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>Email Address</label>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <label style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-m)', textTransform: 'uppercase', letterSpacing: '0.8px', margin: 0 }}>Email Address</label>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      {isEmailVerified ? (
+                        <span style={{ fontSize: '12px', fontWeight: 700, color: '#00E676', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                          <ShieldCheck size={14} /> Verified
+                        </span>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={handleResendVerification}
+                          disabled={resendingVerification}
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            color: 'var(--primary)',
+                            fontSize: '12px',
+                            fontWeight: 700,
+                            cursor: resendingVerification ? 'not-allowed' : 'pointer',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                            padding: 0,
+                            textDecoration: 'underline'
+                          }}
+                        >
+                          {resendingVerification ? <><Loader2 className="spinner" size={12} /> Sending...</> : <><Mail size={12} /> Resend verification link</>}
+                        </button>
+                      )}
+                    </div>
+                  </div>
                   <input type="email" value={settingsForm.email} readOnly style={{ width: '100%', background: 'var(--surface2)', border: '1.5px solid var(--border)', color: 'var(--text-m)', padding: '12px 16px', borderRadius: 'var(--radius-sm)', fontSize: '14px', cursor: 'not-allowed' }} title="Email cannot be changed here" />
-                  <p style={{ fontSize: '11px', color: 'var(--text-l)', marginTop: '4px' }}>Email address is managed by Firebase Auth and cannot be changed here.</p>
+                  <p style={{ fontSize: '11px', color: 'var(--text-l)', marginTop: '4px' }}>
+                    {isEmailVerified 
+                      ? 'Email address is managed by Firebase Auth and cannot be changed here.' 
+                      : 'Your email is pending verification. Click above to resend the confirmation link if you did not receive it.'}
+                  </p>
                 </div>
                 <div>
                   <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-m)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>Phone Number</label>

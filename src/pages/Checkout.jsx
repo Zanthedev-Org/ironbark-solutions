@@ -48,7 +48,6 @@ export default function Checkout() {
 
   const [receiptFile, setReceiptFile] = useState(null);
   const [receiptPreview, setReceiptPreview] = useState(null);
-  const [activeLegal, setActiveLegal] = useState(null);
   const [termsAccepted, setTermsAccepted] = useState({ terms: false, privacy: false });
 
   const DEFAULT_DELIVERY_NOTICE = "This item may incur additional delivery charges due to its size, weight, or fragility.";
@@ -260,11 +259,11 @@ export default function Checkout() {
     }
   };
 
-  const inputStyle = { width: '100%', background: 'var(--surface)', border: '1.5px solid var(--border)', color: 'var(--text-h)', padding: '12px 16px', borderRadius: 'var(--radius-sm)', fontSize: '14px' };
+  const inputStyle = { width: '100%', boxSizing: 'border-box', background: 'var(--surface)', border: '1.5px solid var(--border)', color: 'var(--text-h)', padding: '12px 16px', borderRadius: 'var(--radius-sm)', fontSize: '14px' };
 
   if (authLoading || (!user && !placed)) {
     return (
-      <main className="main-content" style={{ padding: '28px 20px', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
+      <main className="checkout-main" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
         <Loader2 className="spinner" size={32} color="var(--primary)" />
       </main>
     );
@@ -273,9 +272,9 @@ export default function Checkout() {
   if (cart.length === 0 && !placed) return null;
 
   return (
-    <main className="main-content" style={{ padding: '28px 20px' }}>
+    <main className="checkout-main">
       {placed ? (
-        <div style={{ maxWidth: '600px', margin: '60px auto', textAlign: 'center' }}>
+        <div style={{ maxWidth: '600px', margin: '40px auto', textAlign: 'center' }}>
           <div style={{ width: '100px', height: '100px', background: 'rgba(0,230,118,0.1)', border: '3px solid var(--success)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
             <CheckCircle size={52} color="var(--success)" strokeWidth={1.5} />
           </div>
@@ -283,31 +282,31 @@ export default function Checkout() {
           <p style={{ color: 'var(--text-m)', fontSize: '16px', marginBottom: '8px' }}>Thank you for your purchase. We are currently verifying your payment receipt.</p>
           <p style={{ color: 'var(--text-m)', fontSize: '14px', marginBottom: '24px' }}>You will receive an email notification once your order is confirmed and processing.</p>
           <p style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '20px', marginBottom: '32px' }}>Order Total: {formatCurrency(finalTotal)}</p>
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/profile" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--primary)', color: '#fff', padding: '14px 28px', borderRadius: 'var(--radius-md)', fontWeight: 800 }}>Track Order <ChevronRight size={16} /></Link>
             <Link to="/shop" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--surface)', border: '1.5px solid var(--border)', color: 'var(--text-h)', padding: '14px 28px', borderRadius: 'var(--radius-md)', fontWeight: 700 }}>Continue Shopping</Link>
           </div>
         </div>
       ) : (
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '28px', fontWeight: 800, marginBottom: '28px' }}>Checkout</h1>
+        <div className="checkout-container">
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '28px', fontWeight: 800, marginBottom: '24px' }}>Checkout</h1>
 
           {/* Step Indicator */}
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '32px', gap: '0' }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '28px', width: '100%', boxSizing: 'border-box' }}>
             {steps.map((s, i) => (
               <React.Fragment key={s}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
                   <div style={{ width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '14px', background: i <= step ? 'var(--primary)' : 'var(--surface2)', color: i <= step ? '#fff' : 'var(--text-m)', border: `2px solid ${i <= step ? 'var(--primary)' : 'var(--border)'}`, transition: 'var(--transition)' }}>{i < step ? '✓' : i + 1}</div>
                   <span style={{ fontSize: '12px', fontWeight: 600, color: i === step ? 'var(--primary)' : 'var(--text-m)' }}>{s}</span>
                 </div>
-                {i < steps.length - 1 && <div style={{ flex: 1, height: '2px', background: i < step ? 'var(--primary)' : 'var(--border)', margin: '0 8px', marginBottom: '20px', transition: 'var(--transition)' }}></div>}
+                {i < steps.length - 1 && <div style={{ flex: 1, minWidth: '16px', height: '2px', background: i < step ? 'var(--primary)' : 'var(--border)', margin: '0 8px', marginBottom: '20px', transition: 'var(--transition)' }}></div>}
               </React.Fragment>
             ))}
           </div>
 
-          <div className="cart-grid" style={{ gridTemplateColumns: '1fr 360px', alignItems: 'start' }}>
+          <div className="cart-grid">
             {/* Steps Content */}
-            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: '32px' }}>
+            <div className="checkout-card">
               {step === 0 && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '10px' }}><MapPin size={20} color="var(--primary)" /> Delivery Details</h3>
@@ -326,7 +325,7 @@ export default function Checkout() {
                   ))}
 
                   {/* Locked City & State */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '14px' }}>
                     <div>
                       <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-m)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>City</label>
                       <div style={{ ...inputStyle, display: 'flex', alignItems: 'center', justifyContent: 'space-between', opacity: 0.9 }}>
@@ -534,41 +533,65 @@ export default function Checkout() {
                     </div>
                   )}
 
-                  {/* Terms Checkboxes */}
+                  {/* Terms Checkboxes — Fast Tick Option */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '24px', marginBottom: '16px' }}>
                     {/* Terms */}
-                    <div onClick={() => !termsAccepted.terms && setActiveLegal('terms')} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', padding: '16px', borderRadius: 'var(--radius-md)', border: termsAccepted.terms ? '2px solid rgba(0,230,118,0.4)' : '1.5px solid var(--border)', background: termsAccepted.terms ? 'rgba(0,230,118,0.08)' : 'var(--surface2)', cursor: termsAccepted.terms ? 'default' : 'pointer', transition: 'var(--transition)' }}>
-                      <div style={{ flexShrink: 0, marginTop: '2px', width: '20px', height: '20px', borderRadius: '4px', border: termsAccepted.terms ? '2px solid var(--success)' : '2px solid var(--gray-2)', background: termsAccepted.terms ? 'var(--success)' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        {termsAccepted.terms && <CheckCircle size={14} color="#fff" strokeWidth={3} />}
+                    <label 
+                      style={{ 
+                        display: 'flex', 
+                        alignItems: 'flex-start', 
+                        gap: '12px', 
+                        padding: '14px 16px', 
+                        borderRadius: 'var(--radius-md)', 
+                        border: termsAccepted.terms ? '2px solid var(--green)' : '1.5px solid var(--border)', 
+                        background: termsAccepted.terms ? 'rgba(10,122,50,0.06)' : 'var(--surface2)', 
+                        cursor: 'pointer', 
+                        transition: 'var(--ease)' 
+                      }}
+                    >
+                      <input 
+                        type="checkbox" 
+                        checked={termsAccepted.terms} 
+                        onChange={e => setTermsAccepted(p => ({ ...p, terms: e.target.checked }))} 
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--primary)', marginTop: '2px', cursor: 'pointer', flexShrink: 0 }} 
+                      />
+                      <div style={{ flex: 1, fontSize: '13px', lineHeight: 1.5, color: 'var(--text-h)' }}>
+                        <span>I have read and accept the </span>
+                        <Link to="/terms" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} style={{ color: 'var(--red)', fontWeight: 700, textDecoration: 'underline' }}>
+                          Terms &amp; Conditions
+                        </Link>
+                        <span> including the No-Return &amp; No-Refund policy.</span>
                       </div>
-                      <div style={{ flex: 1 }}>
-                        <p style={{ fontSize: '13px', fontWeight: 700, color: termsAccepted.terms ? 'var(--success)' : 'var(--text-h)', margin: 0, lineHeight: 1.5 }}>
-                          I have read and accept the <span style={{ color: 'var(--primary)', cursor: 'pointer', textDecoration: 'underline' }} onClick={e => { e.stopPropagation(); setActiveLegal('terms'); }}>Terms & Conditions</span> including the No-Return & No-Refund policy.
-                        </p>
-                        {termsAccepted.terms ? (
-                          <p style={{ fontSize: '11px', color: 'var(--success)', marginTop: '4px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>✓ Accepted</p>
-                        ) : (
-                          <p style={{ fontSize: '11px', color: 'var(--text-m)', marginTop: '4px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Click to read & accept</p>
-                        )}
-                      </div>
-                    </div>
+                    </label>
 
                     {/* Privacy */}
-                    <div onClick={() => !termsAccepted.privacy && setActiveLegal('privacy')} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', padding: '16px', borderRadius: 'var(--radius-md)', border: termsAccepted.privacy ? '2px solid rgba(0,230,118,0.4)' : '1.5px solid var(--border)', background: termsAccepted.privacy ? 'rgba(0,230,118,0.08)' : 'var(--surface2)', cursor: termsAccepted.privacy ? 'default' : 'pointer', transition: 'var(--transition)' }}>
-                      <div style={{ flexShrink: 0, marginTop: '2px', width: '20px', height: '20px', borderRadius: '4px', border: termsAccepted.privacy ? '2px solid var(--success)' : '2px solid var(--gray-2)', background: termsAccepted.privacy ? 'var(--success)' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        {termsAccepted.privacy && <CheckCircle size={14} color="#fff" strokeWidth={3} />}
+                    <label 
+                      style={{ 
+                        display: 'flex', 
+                        alignItems: 'flex-start', 
+                        gap: '12px', 
+                        padding: '14px 16px', 
+                        borderRadius: 'var(--radius-md)', 
+                        border: termsAccepted.privacy ? '2px solid var(--green)' : '1.5px solid var(--border)', 
+                        background: termsAccepted.privacy ? 'rgba(10,122,50,0.06)' : 'var(--surface2)', 
+                        cursor: 'pointer', 
+                        transition: 'var(--ease)' 
+                      }}
+                    >
+                      <input 
+                        type="checkbox" 
+                        checked={termsAccepted.privacy} 
+                        onChange={e => setTermsAccepted(p => ({ ...p, privacy: e.target.checked }))} 
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--primary)', marginTop: '2px', cursor: 'pointer', flexShrink: 0 }} 
+                      />
+                      <div style={{ flex: 1, fontSize: '13px', lineHeight: 1.5, color: 'var(--text-h)' }}>
+                        <span>I have read and accept the </span>
+                        <Link to="/privacy" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} style={{ color: 'var(--red)', fontWeight: 700, textDecoration: 'underline' }}>
+                          Privacy Policy
+                        </Link>
+                        <span> and consent to data processing under Nigerian NDPR.</span>
                       </div>
-                      <div style={{ flex: 1 }}>
-                        <p style={{ fontSize: '13px', fontWeight: 700, color: termsAccepted.privacy ? 'var(--success)' : 'var(--text-h)', margin: 0, lineHeight: 1.5 }}>
-                          I have read and accept the <span style={{ color: 'var(--primary)', cursor: 'pointer', textDecoration: 'underline' }} onClick={e => { e.stopPropagation(); setActiveLegal('privacy'); }}>Privacy Policy</span> and consent to data processing under Nigerian NDPR.
-                        </p>
-                        {termsAccepted.privacy ? (
-                          <p style={{ fontSize: '11px', color: 'var(--success)', marginTop: '4px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>✓ Accepted</p>
-                        ) : (
-                          <p style={{ fontSize: '11px', color: 'var(--text-m)', marginTop: '4px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Click to read & accept</p>
-                        )}
-                      </div>
-                    </div>
+                    </label>
                   </div>
 
                   {error && (
@@ -592,7 +615,7 @@ export default function Checkout() {
             </div>
 
             {/* Order Summary Sidebar */}
-            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: '24px', position: 'sticky', top: '90px' }}>
+            <div className="checkout-summary-card">
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '16px', fontWeight: 800, color: 'var(--text-h)', marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid var(--border)' }}>Order Summary</h3>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '300px', overflowY: 'auto', marginBottom: '16px' }}>
@@ -624,7 +647,7 @@ export default function Checkout() {
                           border: '1px solid var(--primary)',
                           color: 'var(--primary)',
                           borderRadius: '12px',
-                          padding: '2px 8px',
+                          padding: '1px 8px',
                           fontSize: '11px',
                           fontWeight: 800,
                           cursor: 'pointer',
@@ -668,49 +691,6 @@ export default function Checkout() {
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 800, paddingTop: '12px', borderTop: '1px solid var(--border)', marginTop: '4px' }}><span style={{ color: 'var(--text-h)' }}>Total</span><span style={{ color: 'var(--primary)' }}>{formatCurrency(grandTotal)}</span></div>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Legal Modal */}
-      {activeLegal && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', backdropFilter: 'blur(4px)' }}>
-          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: '32px', width: '100%', maxWidth: '600px', maxHeight: '80vh', overflowY: 'auto', boxShadow: '0 20px 40px rgba(0,0,0,0.25)', position: 'relative' }}>
-            <button onClick={() => setActiveLegal(null)} style={{ position: 'absolute', top: '24px', right: '24px', background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--text-h)', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-              <X size={16} />
-            </button>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, marginBottom: '20px', color: 'var(--text-h)' }}>
-              {activeLegal === 'terms' ? 'Terms & Conditions' : 'Privacy Policy'}
-            </h3>
-            <div style={{ color: 'var(--text-b)', fontSize: '14px', lineHeight: 1.6, marginBottom: '32px' }}>
-              {activeLegal === 'terms' ? (
-                <>
-                  <p style={{ marginBottom: '16px' }}>By proceeding, you agree to Smart Choice Electronics' terms of service. All purchases are final once delivered and verified in good condition.</p>
-                  <h4 style={{ color: 'var(--text-h)', fontWeight: 700, marginBottom: '8px' }}>Strict No-Return &amp; No-Refund Policy</h4>
-                  <p>Please note that Smart Choice Global Resources Ltd operates a strict No-Return and No-Refund policy. Once an item is purchased and collected or delivered, it cannot be returned for a refund or exchanged unless it is Dead On Arrival (DOA) and verified by our certified technicians within 24 hours of delivery.</p>
-                </>
-              ) : (
-                <>
-                  <p style={{ marginBottom: '16px' }}>We value your privacy and are committed to safeguarding your personal data in full compliance with the <strong>Nigeria Data Protection Regulation (NDPR)</strong> and the <strong>Nigeria Data Protection Act (NDPA)</strong>.</p>
-                  <h4 style={{ color: 'var(--text-h)', fontWeight: 700, marginBottom: '8px' }}>NDPR / NDPA Data Protection Consent</h4>
-                  <p style={{ marginBottom: '12px' }}>By accepting this policy, you consent to Smart Choice Global Resources Ltd collecting, storing, and processing your personal data (name, phone number, delivery address, and payment confirmation) exclusively for order fulfillment, fraud prevention, and necessary logistics communication.</p>
-                  <p>Your data is processed securely, never sold or leased to third-party advertisers, and retained strictly in accordance with Nigerian data protection statutory standards.</p>
-                </>
-              )}
-            </div>
-            
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button 
-                onClick={() => {
-                  if (activeLegal === 'terms') setTermsAccepted(p => ({...p, terms: true}));
-                  if (activeLegal === 'privacy') setTermsAccepted(p => ({...p, privacy: true}));
-                  setActiveLegal(null);
-                }} 
-                style={{ width: '100%', padding: '14px', background: 'var(--primary)', border: 'none', borderRadius: 'var(--radius-md)', color: '#fff', fontWeight: 800, cursor: 'pointer', transition: 'var(--transition)', boxShadow: '0 8px 24px var(--primary-glow)' }}
-              >
-                I Accept
-              </button>
             </div>
           </div>
         </div>
