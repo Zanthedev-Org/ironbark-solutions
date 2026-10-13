@@ -244,8 +244,14 @@ export default function Home() {
             const tb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
             return tb - ta;
           });
+          // Smart Deals: discounted products first, fill remainder — no duplicates
+          const discounted = products.filter(p => p.oldPrice || p.originalPrice);
+          const discountedIds = new Set(discounted.map(p => p.id));
+          const fillers = products.filter(p => !discountedIds.has(p.id));
+          const flashSale = [...discounted, ...fillers].slice(0, 10);
+
           setData({
-            flashSale: products.filter(p => p.oldPrice || p.originalPrice).slice(0, 10).concat(products.slice(0, 10)).slice(0, 10),
+            flashSale,
             bestSellers: products.slice(0, 8),
             newArrivals: sorted.slice(0, 12),
             featured: products.slice(0, 12),
