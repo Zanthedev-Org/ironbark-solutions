@@ -1,36 +1,95 @@
-import { useState, useEffect, useCallback } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Shop from './pages/Shop';
+import ProductDetails from './pages/ProductDetails';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import VerifyOTP from './pages/VerifyOTP';
+import ForgotPassword from './pages/ForgotPassword';
+import Profile from './pages/Profile';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import Wishlist from './pages/Wishlist';
+import TrackOrder from './pages/TrackOrder';
+import Contact from './pages/Contact';
+import FAQ from './pages/FAQ';
+import Warranty from './pages/Warranty';
+import DeliveryInfo from './pages/DeliveryInfo';
+import PaymentMethods from './pages/PaymentMethods';
+import ScrollToTop from './components/ScrollToTop';
+import FloatingWidgets from './components/FloatingWidgets';
+import PageLoader from './components/PageLoader';
+import { AppProvider } from './context/AppContext';
 
-export function useDebounce(value, delay) {
-  const [debounced, setDebounced] = useState(value);
-  useEffect(() => {
-    const t = setTimeout(() => setDebounced(value), delay);
-    return () => clearTimeout(t);
-  }, [value, delay]);
-  return debounced;
+// Admin
+import AdminLayout from './pages/admin/AdminLayout';
+import AdminHome from './pages/admin/AdminHome';
+import AdminProducts from './pages/admin/AdminProducts';
+import AdminAddProduct from './pages/admin/AdminAddProduct';
+import AdminOrders from './pages/admin/AdminOrders';
+import AdminUsers from './pages/admin/AdminUsers';
+import AdminCategories from './pages/admin/AdminCategories';
+import AdminBrands from './pages/admin/AdminBrands';
+import AdminSettings from './pages/admin/AdminSettings';
+import AdminLocations from './pages/admin/AdminLocations';
+
+function PublicLayout({ children }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <Navbar />
+      <div style={{ flex: 1 }}>
+        {children}
+      </div>
+      <Footer />
+      <FloatingWidgets />
+    </div>
+  );
 }
 
-export function useLocalStorage(key, initial) {
-  const [val, setVal] = useState(() => {
-    try { const s = localStorage.getItem(key); return s ? JSON.parse(s) : initial; }
-    catch { return initial; }
-  });
-  const set = useCallback((v) => { setVal(v); localStorage.setItem(key, JSON.stringify(v)); }, [key]);
-  return [val, set];
+export default function App() {
+  return (
+    <AppProvider>
+      <Router>
+        <PageLoader />
+        <ScrollToTop />
+        <Routes>
+          {/* Public Routes — with Navbar/Footer */}
+          <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
+          <Route path="/shop" element={<PublicLayout><Shop /></PublicLayout>} />
+          <Route path="/product/:id" element={<PublicLayout><ProductDetails /></PublicLayout>} />
+          <Route path="/login" element={<PublicLayout><Login /></PublicLayout>} />
+          <Route path="/register" element={<PublicLayout><Register /></PublicLayout>} />
+          <Route path="/verify-otp" element={<PublicLayout><VerifyOTP /></PublicLayout>} />
+          <Route path="/forgot-password" element={<PublicLayout><ForgotPassword /></PublicLayout>} />
+          <Route path="/profile" element={<PublicLayout><Profile /></PublicLayout>} />
+          <Route path="/wishlist" element={<PublicLayout><Wishlist /></PublicLayout>} />
+          <Route path="/cart" element={<PublicLayout><Cart /></PublicLayout>} />
+          <Route path="/checkout" element={<PublicLayout><Checkout /></PublicLayout>} />
+          <Route path="/track-order" element={<PublicLayout><TrackOrder /></PublicLayout>} />
+          <Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />
+          <Route path="/faq" element={<PublicLayout><FAQ /></PublicLayout>} />
+          <Route path="/warranty" element={<PublicLayout><Warranty /></PublicLayout>} />
+          <Route path="/delivery-info" element={<PublicLayout><DeliveryInfo /></PublicLayout>} />
+          <Route path="/payment-methods" element={<PublicLayout><PaymentMethods /></PublicLayout>} />
+
+          {/* Admin Routes — no Navbar/Footer, full-page layout */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminHome />} />
+            <Route path="products" element={<AdminProducts />} />
+            <Route path="add-product" element={<AdminAddProduct />} />
+            <Route path="edit/:id" element={<AdminAddProduct />} />
+            <Route path="orders" element={<AdminOrders />} />
+            <Route path="users" element={<AdminUsers />} />
+            <Route path="categories" element={<AdminCategories />} />
+            <Route path="brands" element={<AdminBrands />} />
+            <Route path="settings" element={<AdminSettings />} />
+            <Route path="locations" element={<AdminLocations />} />
+          </Route>
+        </Routes>
+      </Router>
+    </AppProvider>
+  );
 }
-
-export const formatDate = (d, locale = 'en-NG') =>
-  new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(d));
-
-export const truncate = (str, n = 100) => str?.length > n ? str.slice(0, n).trimEnd() + '...' : str;
-
-export const classNames = (...args) => args.filter(Boolean).join(' ');
-
-export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-export const groupBy = (arr, key) => arr.reduce((acc, item) => {
-  const k = item[key]; if (!acc[k]) acc[k] = []; acc[k].push(item); return acc;
-}, {});
-
-export const debounce = (fn, delay) => {
-  let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), delay); };
-};

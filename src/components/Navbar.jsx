@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Search, User, Heart, ShoppingCart,
-  LayoutGrid, Armchair, Zap, Wind, Refrigerator, RefreshCcw, Tv, Home as HomeIcon,
-  Gamepad2, Menu, PhoneCall, ShieldCheck
+  LayoutGrid, Smartphone, Laptop, Tv, Home as HomeIcon,
+  Gamepad2, Camera, Menu, PhoneCall, ShieldCheck
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { formatCurrency } from '../pages/Home';
@@ -39,13 +39,11 @@ export default function Navbar() {
 
   const getDeptIcon = (name) => {
     const n = name.toLowerCase();
-    if (n.includes('furnitur')) return <Armchair size={14} />;
-    if (n.includes('inverter') || n.includes('solar')) return <Zap size={14} />;
-    if (n.includes('ac') || n.includes('condition')) return <Wind size={14} />;
-    if (n.includes('fridge') || n.includes('freeze') || n.includes('refrigerat')) return <Refrigerator size={14} />;
-    if (n.includes('wash')) return <RefreshCcw size={14} />;
+    if (n.includes('phone') || n.includes('wearable')) return <Smartphone size={14} />;
+    if (n.includes('comput') || n.includes('laptop')) return <Laptop size={14} />;
     if (n.includes('tv') || n.includes('audio')) return <Tv size={14} />;
     if (n.includes('gam')) return <Gamepad2 size={14} />;
+    if (n.includes('photo') || n.includes('camera')) return <Camera size={14} />;
     if (n.includes('home') || n.includes('appliance')) return <HomeIcon size={14} />;
     return <LayoutGrid size={14} />;
   };
@@ -68,7 +66,7 @@ export default function Navbar() {
           <form onSubmit={handleSearch} className="sc-nav-search desktop-only">
             <input
               type="search"
-              placeholder="Search furniture, inverters, ACs, fridges, washing machines..."
+              placeholder="Search modern appliances, TVs, phones..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
             />
@@ -181,13 +179,9 @@ export default function Navbar() {
               <span style={{ fontSize:13, color:'var(--text-m)' }}>Theme</span>
               <ThemeToggle />
             </div>
-            <div style={{ padding:'12px 18px', background:'var(--surface2, #FFF0F1)', display:'flex', flexDirection:'column', gap:8 }}>
-              <div style={{ fontSize:11, fontWeight:700, color:'var(--text-m)', textTransform:'uppercase', letterSpacing:'0.5px' }}>Customer Support Lines</div>
+            <div style={{ padding:'10px 18px', background:'#FFF0F1' }}>
               <a href="tel:+2348165929400" style={{ color:'var(--red)', fontWeight:700, display:'flex', alignItems:'center', gap:6, fontSize:13 }}>
-                <PhoneCall size={14} /> 37 NTA Road: +234 816 592 9400
-              </a>
-              <a href="tel:+2348165896158" style={{ color:'var(--red)', fontWeight:700, display:'flex', alignItems:'center', gap:6, fontSize:13 }}>
-                <PhoneCall size={14} /> 71 NTA MTN Rd: +234 816 589 6158
+                <PhoneCall size={14} /> +234 816 592 9400
               </a>
             </div>
           </div>

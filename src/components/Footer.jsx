@@ -19,37 +19,30 @@ export default function Footer() {
                 <span style={{ fontFamily:'var(--font-display)', fontSize:17, fontWeight:900 }}>
                   <span style={{ color:'var(--red)' }}>Smart</span><span style={{ color:'#7BAFFF' }}>Choice</span>
                 </span>
-                <span style={{ fontSize:9, color:'rgba(255,255,255,0.5)', letterSpacing:'0.6px', textTransform:'uppercase' }}>Global Resources Ltd</span>
+                <span style={{ fontSize:9, color:'rgba(255,255,255,0.5)', letterSpacing:'0.6px', textTransform:'uppercase' }}>Electronics Group</span>
               </div>
             </Link>
 
             <p>
               Smart Choice Global Resources Ltd — Port Harcourt's trusted distributor
-              of modern furniture, Firman hybrid inverters, ECO-FLOW inverters, air conditioners,
-              freezers, refrigerators, washing machines and home appliances. 100% genuine products guaranteed.
+              of all brands of electronics, home appliances, inverters, furniture and
+              general merchandise. 100% genuine products guaranteed.
             </p>
 
             {/* Bank details */}
-            <div style={{ marginTop:16, padding:'12px 14px', background:'rgba(255,255,255,0.07)', borderRadius:6, border:'1px solid rgba(255,255,255,0.12)' }}>
-              <div style={{ fontSize:10, color:'rgba(255,255,255,0.55)', textTransform:'uppercase', letterSpacing:'1px', marginBottom:5 }}>Direct Bank Transfer / POS</div>
-              <div style={{ fontFamily:'var(--font-display)', fontSize:18, fontWeight:900, color:'#fff', letterSpacing:'1.5px' }}>8682287868</div>
-              <div style={{ fontSize:12, fontWeight:700, color:'rgba(255,255,255,0.9)', marginTop:2 }}>SMART CHOICE GLOBAL RESOURCES LTD</div>
-              <div style={{ fontSize:12, fontWeight:800, color:'#F0B800', marginTop:3 }}>Sterling Bank POS</div>
+            <div style={{ marginTop:16, padding:'10px 14px', background:'rgba(255,255,255,0.07)', borderRadius:6, border:'1px solid rgba(255,255,255,0.1)' }}>
+              <div style={{ fontSize:10, color:'rgba(255,255,255,0.45)', textTransform:'uppercase', letterSpacing:'1px', marginBottom:5 }}>Bank Transfer (POS)</div>
+              <div style={{ fontFamily:'var(--font-display)', fontSize:17, fontWeight:900, color:'#fff', letterSpacing:'1px' }}>8682287868</div>
+              <div style={{ fontSize:12, color:'rgba(255,255,255,0.6)' }}>Smart Choice Global Resources Ltd</div>
+              <div style={{ fontSize:12, fontWeight:700, color:'#F0B800', marginTop:2 }}>Sterling Bank</div>
             </div>
 
             <div className="social-links">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Facebook"><FaFacebook size={16} /></a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram"><FaInstagram size={16} /></a>
-              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="TikTok"><FaTiktok size={16} /></a>
+              <a href="#" className="social-link" aria-label="Facebook"><FaFacebook size={16} /></a>
+              <a href="#" className="social-link" aria-label="Instagram"><FaInstagram size={16} /></a>
+              <a href="#" className="social-link" aria-label="TikTok"><FaTiktok size={16} /></a>
               <a href="https://wa.me/2348165929400" target="_blank" rel="noopener noreferrer"
-                className="social-link" aria-label="WhatsApp Support 37 NTA Road"
-                title="WhatsApp 37 NTA Road Plaza"
-                style={{ background:'rgba(37,211,102,0.15)', borderColor:'rgba(37,211,102,0.3)', color:'#25D366' }}>
-                <FaWhatsapp size={16} />
-              </a>
-              <a href="https://wa.me/2348165896158" target="_blank" rel="noopener noreferrer"
-                className="social-link" aria-label="WhatsApp Support 71 NTA MTN Road"
-                title="WhatsApp 71 NTA MTN Road"
+                className="social-link" aria-label="WhatsApp"
                 style={{ background:'rgba(37,211,102,0.15)', borderColor:'rgba(37,211,102,0.3)', color:'#25D366' }}>
                 <FaWhatsapp size={16} />
               </a>
@@ -62,14 +55,13 @@ export default function Footer() {
             <div className="footer-col-title">Our Products</div>
             <div className="footer-links">
               <Link to="/shop?dept=Modern%20Furniture">Modern Furniture</Link>
-              <Link to="/shop?dept=Inverters%20%26%20Solar">Firman Hybrid Inverters</Link>
-              <Link to="/shop?dept=Inverters%20%26%20Solar">ECO-FLOW Inverters</Link>
+              <Link to="/shop?dept=Televisions">Televisions</Link>
+              <Link to="/shop?dept=Refrigerators">Refrigerators &amp; Freezers</Link>
               <Link to="/shop?dept=Air%20Conditioners">Air Conditioners</Link>
-              <Link to="/shop?dept=Freezers">Chest &amp; Deep Freezers</Link>
-              <Link to="/shop?dept=Refrigerators">Refrigerators</Link>
               <Link to="/shop?dept=Washing%20Machines">Washing Machines</Link>
-              <Link to="/shop?dept=Televisions%20%26%20Home%20Audio">Smart Televisions</Link>
-              <Link to="/shop?dept=Kitchen%20%26%20Home%20Appliances">Kitchen Appliances</Link>
+              <Link to="/shop?dept=Inverters%20%26%20Solar">Inverters &amp; Solar</Link>
+              <Link to="/shop?dept=Audio%20%26%20Speakers">Audio &amp; Speakers</Link>
+              <Link to="/shop?dept=Small%20Kitchen%20Appliances">Small Kitchen Appliances</Link>
             </div>
           </div>
 
@@ -77,13 +69,12 @@ export default function Footer() {
           <div>
             <div className="footer-col-title">Customer Support</div>
             <div className="footer-links">
-              <Link to="/shop">Track Your Order</Link>
-              <Link to="/shop">Payment Methods</Link>
-              <Link to="/shop">Delivery in Port Harcourt</Link>
-              <Link to="/shop">Warranty Policy</Link>
-              <Link to="/shop">Inverter Installation Guide</Link>
-              <Link to="/shop">FAQ</Link>
-              <a href="mailto:smartchoiceglobalresourcesltd@gmail.com">Email Support</a>
+              <Link to="/track-order">Track Your Order</Link>
+              <Link to="/payment-methods">Payment Methods</Link>
+              <Link to="/delivery-info">Delivery Information</Link>
+              <Link to="/warranty">Warranty Policy</Link>
+              <Link to="/faq">FAQ</Link>
+              <Link to="/contact">Contact Us</Link>
             </div>
           </div>
 
@@ -94,10 +85,10 @@ export default function Footer() {
             <div className="footer-contact-item">
               <span className="footer-contact-icon"><PhoneCall size={16} /></span>
               <div className="footer-contact-text">
-                <strong>Call Support</strong>
+                <strong>Call Us</strong>
                 <a href="tel:+2348165929400">+234 816 592 9400</a><br />
                 <a href="tel:+2348165896158">+234 816 589 6158</a><br />
-                <span style={{ fontSize:11, color:'rgba(255,255,255,0.6)' }}>Mon – Sat: 8am – 8pm</span>
+                <span style={{ fontSize:11 }}>Mon – Sat: 8am – 8pm</span>
               </div>
             </div>
 
@@ -106,12 +97,12 @@ export default function Footer() {
               <div className="footer-contact-text">
                 <strong>WhatsApp Support</strong>
                 <a href="https://wa.me/2348165929400" target="_blank" rel="noopener noreferrer"
-                  style={{ color:'#25D366', display:'block', marginBottom:2 }}>
-                  💬 37 NTA Road: +234 816 592 9400
-                </a>
+                  style={{ color:'#25D366' }}>
+                  +234 816 592 9400 (37 NTA Road)
+                </a><br />
                 <a href="https://wa.me/2348165896158" target="_blank" rel="noopener noreferrer"
-                  style={{ color:'#25D366', display:'block' }}>
-                  💬 71 NTA MTN Road: +234 816 589 6158
+                  style={{ color:'#25D366' }}>
+                  +234 816 589 6158 (71 NTA Road)
                 </a>
               </div>
             </div>
@@ -119,19 +110,8 @@ export default function Footer() {
             <div className="footer-contact-item">
               <span className="footer-contact-icon"><Mail size={16} /></span>
               <div className="footer-contact-text">
-                <strong>Email</strong>
-                <a href="mailto:smartchoiceglobalresourcesltd@gmail.com" style={{ fontSize:12, wordBreak:'break-all' }}>
-                  smartchoiceglobalresourcesltd@gmail.com
-                </a>
-              </div>
-            </div>
-
-            <div className="footer-contact-item">
-              <span className="footer-contact-icon"><Building2 size={16} /></span>
-              <div className="footer-contact-text">
-                <strong>Branch Store</strong>
-                Smart choice plaza<br />
-                37 NTA ROAD MGBUOBA PORTHARCOURT RIVERS STATE
+                <strong>Email Us</strong>
+                <a href="mailto:smartchoiceglobalresourcesltd@gmail.com" style={{ wordBreak:'break-all' }}>smartchoiceglobalresourcesltd@gmail.com</a>
               </div>
             </div>
 
@@ -139,8 +119,15 @@ export default function Footer() {
               <span className="footer-contact-icon"><MapPin size={16} /></span>
               <div className="footer-contact-text">
                 <strong>Main Store</strong>
-                71 NTA Road Mgbuoba (MTN Road),<br />
-                Port Harcourt, Rivers State
+                71 NTA Road Mgbuoba,<br />Port Harcourt, Rivers State
+              </div>
+            </div>
+
+            <div className="footer-contact-item">
+              <span className="footer-contact-icon"><Building2 size={16} /></span>
+              <div className="footer-contact-text">
+                <strong>Branch Store</strong>
+                Smart Choice Plaza<br />37 NTA Road Mgbuoba,<br />Port Harcourt, Rivers State
               </div>
             </div>
           </div>
@@ -150,14 +137,13 @@ export default function Footer() {
         {/* Bottom */}
         <div className="footer-bottom">
           <div className="footer-copyright">
-            © 2026 <span>Smart Choice Global Resources Ltd</span>. All rights reserved. Port Harcourt, Nigeria.
+            © 2026 <span>Smart Choice Electronics Group</span>. All rights reserved. Port Harcourt, Nigeria.
           </div>
           <div style={{ display:'flex', gap:6, flexWrap:'wrap', alignItems:'center' }}>
-            <span className="payment-badge" style={{ color:'#F0B800', borderColor:'rgba(240,184,0,0.4)', background:'rgba(240,184,0,0.1)', fontWeight:700 }}>Sterling Bank POS</span>
-            <span className="payment-badge" style={{ display:'flex', alignItems:'center', gap:4 }}><CreditCard size={11} /> Bank Transfer</span>
             <span className="payment-badge" style={{ display:'flex', alignItems:'center', gap:4 }}><CreditCard size={11} /> Visa</span>
             <span className="payment-badge" style={{ display:'flex', alignItems:'center', gap:4 }}><CreditCard size={11} /> Mastercard</span>
             <span className="payment-badge" style={{ display:'flex', alignItems:'center', gap:4 }}><CreditCard size={11} /> Paystack</span>
+            <span className="payment-badge" style={{ color:'#F0B800', borderColor:'rgba(240,184,0,0.3)', background:'rgba(240,184,0,0.08)' }}>Moniepoint</span>
           </div>
         </div>
       </div>

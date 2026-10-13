@@ -2,10 +2,11 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { allProducts, productData } from '../data/productData';
 import {
-  Armchair, Wind, BatteryCharging, Tv, Headphones, Refrigerator,
+  Sofa, Tv, Headphones, Refrigerator, WashingMachine, Wind, Zap,
   ShoppingCart, Heart, Truck, ShieldCheck, CheckCircle, RefreshCcw,
-  Mail, Zap, ChevronLeft, ChevronRight, Star, Tag, ArrowRight,
-  Flame, Clock, Grid, List, TrendingUp, Award, Package, Cpu
+  Mail, ChevronLeft, ChevronRight, Star, Tag, ArrowRight,
+  Flame, Clock, Grid, List, TrendingUp, Award, Package, Cpu,
+  Smartphone, Laptop, Camera, Watch
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import SEO from '../components/SEO';
@@ -263,25 +264,26 @@ export default function Home() {
 
   /* ── category images ── */
   const CATS = [
-    { img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=150&q=80', name: 'Modern Furniture', color: '#D0021B' },
+    { img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=150&q=80', name: 'Modern Furniture', color: '#7B2FBE' },
     { img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=150&q=80', name: 'Inverters & Solar', color: '#F0B800' },
     { img: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=150&q=80', name: 'Air Conditioners', color: '#0C2D6B' },
-    { img: 'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=150&q=80', name: 'Refrigerators', color: '#0A7A32' },
-    { img: 'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=150&q=80', name: 'Freezers', color: '#00796B' },
-    { img: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=150&q=80', name: 'Washing Machines', color: '#7B2FBE' },
+    { img: 'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=150&q=80', name: 'Freezers', color: '#0A7A32' },
+    { img: 'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=150&q=80', name: 'Refrigerators', color: '#D0021B' },
+    { img: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=150&q=80', name: 'Washing Machines', color: '#00796B' },
     { img: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=150&q=80', name: 'Televisions', color: '#E65100' },
-    { img: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=150&q=80', name: 'Home Appliances', color: '#C2185B' },
+    { img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=150&q=80', name: 'Audio', color: '#C2185B' },
   ];
 
   const PROMO_SECTIONS = [
-    { title: 'Modern Furniture', accent: 'Luxury Living', icon: <Armchair size={16}/> },
-    { title: 'Firman Hybrid Inverters', accent: 'Solar & Power', icon: <Zap size={16}/> },
-    { title: 'ECO-FLOW INVERTERS', accent: 'Smart Backup', icon: <BatteryCharging size={16}/> },
-    { title: 'Air Conditioners', accent: 'Inverter Cooling', icon: <Wind size={16}/> },
-    { title: 'Freezers & Refrigerators', accent: 'Fresh & Frost-Free', icon: <Refrigerator size={16}/> },
-    { title: 'Washing Machines', accent: 'Automatic Care', icon: <RefreshCcw size={16}/> },
+    { title: 'Modern Furniture', accent: 'Premium Designs', icon: <Sofa size={16}/> },
+    { title: 'Air Conditioners', accent: 'Cool & Efficient', icon: <Wind size={16}/> },
+    { title: 'Inverters & Solar', accent: 'Power Solutions', icon: <Zap size={16}/> },
+    { title: 'Refrigerators', accent: 'Keep It Fresh', icon: <Refrigerator size={16}/> },
+    { title: 'Freezers', accent: 'Deep Freeze Deals', icon: <Refrigerator size={16}/> },
+    { title: 'Washing Machines', accent: 'Clean & Smart', icon: <WashingMachine size={16}/> },
     { title: 'Televisions', accent: 'Cinema Experience', icon: <Tv size={16}/> },
-    { title: 'Home & Kitchen Appliances', accent: 'Smart Savings', icon: <Package size={16}/> },
+    { title: 'Audio & Speakers', accent: 'Crystal Sound', icon: <Headphones size={16}/> },
+    { title: 'Small Kitchen Appliances', accent: 'Kitchen Essentials', icon: <Zap size={16}/> },
     { title: 'Best Sellers', accent: 'Customer Favourites', icon: <Award size={16}/> },
     { title: 'New Arrivals', accent: 'Just Landed', icon: <Package size={16}/> },
     { title: 'Clearance', accent: 'Massive Discounts', icon: <Tag size={16}/> },
@@ -291,7 +293,7 @@ export default function Home() {
     <main id="main">
       <SEO
         title="Smart Choice Electronics — Best Prices in Port Harcourt"
-        description="Buy modern furniture, Firman hybrid inverters, ECO-FLOW inverters, air conditioners, freezers, refrigerators, washing machines and TVs at Smart Choice Global Resources Ltd. Trusted distributor in Port Harcourt with 100% genuine products and fast delivery."
+        description="Buy the latest TVs, home appliances, inverters, modern furniture, air conditioners, refrigerators, freezers and washing machines at Smart Choice Electronics Group. Trusted distributor in Port Harcourt with 100% genuine products and fast delivery."
         url="/"
       />
 
@@ -331,7 +333,7 @@ export default function Home() {
                 At Your Fingertips
               </h1>
               <p className="sc-hero__sub">
-                Modern Furniture · Inverters · Air Conditioners · Refrigerators · Washing Machines<br />
+                TVs · Inverters · Furniture · ACs · Freezers · Refrigerators<br />
                 100% Genuine. Best Prices. Fast Delivery.
               </p>
             </>
@@ -407,9 +409,9 @@ export default function Home() {
               <div className="sc-hero__deco-circle" />
               <div className="sc-hero__deco-ring" />
               <div className="sc-hero__deco-images">
-                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=300&q=80" alt="Modern Furniture" className="sc-hero__deco-img sc-hero__deco-img--1" />
-                <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=300&q=80" alt="TV" className="sc-hero__deco-img sc-hero__deco-img--2" />
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=300&q=80" alt="Inverter" className="sc-hero__deco-img sc-hero__deco-img--3" />
+                <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=300&q=80" alt="Television" className="sc-hero__deco-img sc-hero__deco-img--1" />
+                <img src="https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=300&q=80" alt="Refrigerator" className="sc-hero__deco-img sc-hero__deco-img--2" />
+                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=300&q=80" alt="Furniture" className="sc-hero__deco-img sc-hero__deco-img--3" />
               </div>
             </div>
           )}
@@ -424,7 +426,7 @@ export default function Home() {
           {[
             { icon: <Truck size={20} />, title: 'Fast Delivery', sub: 'Citywide Port Harcourt' },
             { icon: <ShieldCheck size={20} />, title: 'Genuine Products', sub: '100% authentic brands' },
-            { icon: <CheckCircle size={20} />, title: 'Secure Payment', sub: 'Sterling Bank & POS' },
+            { icon: <CheckCircle size={20} />, title: 'Secure Payment', sub: 'Moniepoint & transfers' },
             { icon: <RefreshCcw size={20} />, title: 'No Returns', sub: 'All sales are final' },
           ].map((t, i) => (
             <div key={i} className="sc-trust-strip__item">
@@ -446,7 +448,7 @@ export default function Home() {
         <section className="sc-cats" aria-label="Categories">
           <div className="sc-cats__grid">
             {CATS.map((c, i) => (
-              <Link to="/shop" key={c.name} className="sc-cat-bubble" style={{ '--cat-clr': c.color, animationDelay: `${i * 0.05}s` }}>
+              <Link to={`/shop?dept=${encodeURIComponent(c.name)}`} key={c.name} className="sc-cat-bubble" style={{ '--cat-clr': c.color, animationDelay: `${i * 0.05}s` }}>
                 <div className="sc-cat-bubble__img-wrap">
                   <img src={c.img} alt={c.name} className="sc-cat-bubble__img" />
                 </div>
@@ -525,30 +527,30 @@ export default function Home() {
             PROMO BANNERS — 3 col
             ════════════════════════════════════════ */}
         <section className="sc-banners" aria-label="Promotions">
-          <Link to="/shop?dept=Modern%20Furniture" className="sc-banner sc-banner--blue">
+          <Link to="/shop?dept=Televisions" className="sc-banner sc-banner--blue">
             <div className="sc-banner__body">
-              <div className="sc-banner__eyebrow">Luxury Living</div>
-              <div className="sc-banner__title">Modern <span>Furniture</span></div>
-              <div className="sc-banner__sub">Sofas, dining sets &amp; executive office furniture</div>
-              <span className="sc-banner__cta">Shop Furniture →</span>
-            </div>
-            <Armchair size={80} strokeWidth={0.8} className="sc-banner__bg-icon" />
-          </Link>
-          <Link to="/shop?dept=Air%20Conditioners" className="sc-banner sc-banner--red">
-            <div className="sc-banner__body">
-              <div className="sc-banner__eyebrow">Cooling &amp; Laundry</div>
-              <div className="sc-banner__title">ACs, Fridges <span>&amp; Washers</span></div>
-              <div className="sc-banner__sub">Fridges, ACs, Freezers &amp; Washing Machines</div>
-              <span className="sc-banner__cta">Shop Appliances →</span>
+              <div className="sc-banner__eyebrow">Best Sellers</div>
+              <div className="sc-banner__title">Home <span>Appliances</span></div>
+              <div className="sc-banner__sub">Fridges, ACs &amp; Washing Machines</div>
+              <span className="sc-banner__cta">Shop Now →</span>
             </div>
             <Refrigerator size={80} strokeWidth={0.8} className="sc-banner__bg-icon" />
           </Link>
-          <Link to="/shop?dept=Inverters%20%26%20Solar" className="sc-banner sc-banner--green">
+          <Link to="/shop?dept=Refrigerators" className="sc-banner sc-banner--red">
             <div className="sc-banner__body">
-              <div className="sc-banner__eyebrow">24/7 Smart Energy</div>
-              <div className="sc-banner__title">Firman &amp; <span>ECO-FLOW</span></div>
-              <div className="sc-banner__sub">Hybrid inverters &amp; solar power backup</div>
-              <span className="sc-banner__cta">Shop Inverters →</span>
+              <div className="sc-banner__eyebrow">Fresh Deals</div>
+              <div className="sc-banner__title">Refrigerators <span>&amp; Freezers</span></div>
+              <div className="sc-banner__sub">Keep your food fresh — best brands</div>
+              <span className="sc-banner__cta">Shop Now →</span>
+            </div>
+            <Refrigerator size={80} strokeWidth={0.8} className="sc-banner__bg-icon" />
+          </Link>
+          <Link to="/shop?dept=Inverters %26 Solar" className="sc-banner sc-banner--green">
+            <div className="sc-banner__body">
+              <div className="sc-banner__eyebrow">Smart Energy</div>
+              <div className="sc-banner__title">Inverters <span>&amp; Solar</span></div>
+              <div className="sc-banner__sub">Power solutions for home &amp; office</div>
+              <span className="sc-banner__cta">Shop Now →</span>
             </div>
             <Zap size={80} strokeWidth={0.8} className="sc-banner__bg-icon" />
           </Link>
@@ -583,7 +585,7 @@ export default function Home() {
                   <span className="sc-section__icon" style={{ color: 'var(--red)' }}>{sec.icon}</span>
                   <h2 className="sc-section__title">{sec.title} <span>{sec.accent}</span></h2>
                 </div>
-                <Link to="/shop" className="sc-section__more">View All <ArrowRight size={14} /></Link>
+                <Link to={`/shop?dept=${encodeURIComponent(sec.title)}`} className="sc-section__more">View All <ArrowRight size={14} /></Link>
               </div>
               <ScrollableProductSlider products={products} isLoading={isLoading} />
             </section>
@@ -616,14 +618,14 @@ export default function Home() {
 }
 
 export const getProductIcon = (category) => {
-  if (!category) return <Armchair size={48} strokeWidth={1} />;
+  if (!category) return <Smartphone size={48} strokeWidth={1} />;
   const c = category.toLowerCase();
-  if (c.includes('furnitur') || c.includes('sofa') || c.includes('chair') || c.includes('desk') || c.includes('table') || c.includes('bed')) return <Armchair size={48} strokeWidth={1} />;
-  if (c.includes('inverter') || c.includes('solar') || c.includes('firman') || c.includes('flow') || c.includes('power')) return <Zap size={48} strokeWidth={1} />;
-  if (c.includes('ac') || c.includes('condition') || c.includes('cool')) return <Wind size={48} strokeWidth={1} />;
-  if (c.includes('fridge') || c.includes('refrigerat') || c.includes('freezer')) return <Refrigerator size={48} strokeWidth={1} />;
-  if (c.includes('wash')) return <RefreshCcw size={48} strokeWidth={1} />;
+  if (c.includes('phone') || c.includes('tablet')) return <Smartphone size={48} strokeWidth={1} />;
+  if (c.includes('laptop') || c.includes('computer')) return <Laptop size={48} strokeWidth={1} />;
   if (c.includes('tv') || c.includes('television')) return <Tv size={48} strokeWidth={1} />;
-  if (c.includes('audio') || c.includes('sound') || c.includes('speaker')) return <Headphones size={48} strokeWidth={1} />;
-  return <Package size={48} strokeWidth={1} />;
+  if (c.includes('headphone') || c.includes('audio')) return <Headphones size={48} strokeWidth={1} />;
+  if (c.includes('fridge') || c.includes('home')) return <Refrigerator size={48} strokeWidth={1} />;
+  if (c.includes('camera')) return <Camera size={48} strokeWidth={1} />;
+  if (c.includes('watch')) return <Watch size={48} strokeWidth={1} />;
+  return <Smartphone size={48} strokeWidth={1} />;
 };

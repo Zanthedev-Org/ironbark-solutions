@@ -95,7 +95,7 @@ export default function Shop() {
 
   const specKey = activeCategory;
   const specSchema = categorySpecs[specKey] || [];
-
+  
   const dynamicSpecFilters = useMemo(() => {
     return specSchema.map(field => {
       const values = [...new Set(
@@ -105,9 +105,9 @@ export default function Shop() {
     }).filter(f => f.liveOptions.length > 0);
   }, [specSchema, categoryProducts]);
 
-  const brandsInCategory = useMemo(() =>
+  const brandsInCategory = useMemo(() => 
     [...new Set(categoryProducts.map(p => p.brand).filter(Boolean))].sort(),
-    [categoryProducts]);
+  [categoryProducts]);
 
   const handleFilterChange = (filterId, option) => {
     setSelectedFilters(prev => {
@@ -174,18 +174,18 @@ export default function Shop() {
   // Group products for the List View (☰)
   const groupedVerticals = React.useMemo(() => {
     if (view !== 'list') return [];
-
+    
     const isFiltered = activeCategory !== null || activeFilterCount > 0 || searchQuery !== '';
 
     // If a filter is applied, split evenly across 4 tracks ("deck of cards" style)
     if (isFiltered) {
       const NUM_TRACKS = 4;
       const tracks = Array.from({ length: NUM_TRACKS }, () => ({ name: '', products: [] }));
-
+      
       visibleProducts.forEach((p, i) => {
         tracks[i % NUM_TRACKS].products.push(p);
       });
-
+      
       return tracks.filter(t => t.products.length > 0);
     }
 
@@ -262,7 +262,7 @@ export default function Shop() {
         title={activeCategory ? `Buy ${activeCategory} in Nigeria` : searchQuery ? `"${searchQuery}" - Electronics Nigeria` : 'Shop All Electronics in Nigeria'}
         description={activeCategory
           ? `Shop ${activeCategory} online at Smart Choice Electronics. Best prices, fast delivery, genuine products.`
-          : 'Browse modern furniture, Firman & EcoFlow inverters, air conditioners, freezers, refrigerators, washing machines and home appliances. 100% genuine products.'}
+          : 'Browse smartphones, laptops, TVs, home appliances, inverters and more. 100% genuine products.'}
         url="/shop"
       />
       <div className="section-header">
@@ -471,8 +471,8 @@ export default function Shop() {
                 )
                 : groupedVerticals.length > 0
                   ? groupedVerticals.map(vertical => (
-                    <VerticalTrack key={vertical.name} title={vertical.name} products={vertical.products} />
-                  ))
+                      <VerticalTrack key={vertical.name} title={vertical.name} products={vertical.products} />
+                    ))
                   : (
                     <div className="shop-empty">
                       <div style={{ fontSize: '40px', marginBottom: '12px' }}>🔍</div>
