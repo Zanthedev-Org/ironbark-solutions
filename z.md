@@ -1,14 +1,3 @@
+user did not get enough time to read popup that tells them to check their email for confirmation and also place the resend verification link on customer profile page
 
-Track Your Order
-Returns & Refunds
-Payment Methods
-Delivery Information
-Warranty Policy
-FAQ
-Contact Us
-
-
-should be links that actually works and no refund ploicy 
-
-you didnt update all privacy and policy 
-its also miising ndrs
+the terms and condition and the privacy and policy should be popups with the full details in which the user has to scroll to the button before they can accept the compliance

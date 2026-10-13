@@ -162,7 +162,7 @@ export default function ProductDetails() {
             <span className="stars" style={{ color: 'var(--primary)', fontSize: '16px', letterSpacing: '2px' }}>
               {'★'.repeat(Math.max(0, Math.min(5, Math.floor(Number(product.rating) || 0))))}{'☆'.repeat(Math.max(0, 5 - Math.min(5, Math.floor(Number(product.rating) || 0))))}
             </span>
-            <span style={{ fontWeight: 700, color: 'var(--white)', marginLeft: '8px' }}>{Number(product.rating) || 0}</span>
+            <span style={{ fontWeight: 700, color: 'var(--text-h)', marginLeft: '8px' }}>{Number(product.rating) || 0}</span>
             <span>({Number(product.reviews) || 0} verified ratings)</span>
           </div>
 
@@ -180,7 +180,7 @@ export default function ProductDetails() {
 
           {normalizedColors.length > 0 && (
             <div className="pd-variants">
-              <div className="variant-title">Color: <span style={{ color: 'var(--white)' }}>{selectedColor}</span></div>
+              <div className="variant-title">Color: <span style={{ color: 'var(--text-h)', fontWeight: 700 }}>{selectedColor}</span></div>
               <div className="variant-options">
                 {normalizedColors.map(col => (
                   <button 
@@ -218,19 +218,19 @@ export default function ProductDetails() {
           <div className="pas-delivery">
             <div className="pas-delivery-icon" style={{ color: 'var(--primary)' }}><Truck size={32} strokeWidth={1.5} /></div>
             <div className="pas-delivery-text">
-              <strong>Free Delivery</strong>
-              <span>Estimated delivery: 2-4 working days across Lagos.</span>
+              <strong>City Delivery</strong>
+              <span>Fast dispatch in Port Harcourt from ₦7,000 &amp; nationwide logistics.</span>
             </div>
           </div>
           <div className="pas-delivery" style={{ borderBottom: 'none', paddingBottom: 0 }}>
             <div className="pas-delivery-icon" style={{ color: 'var(--primary)' }}><ShieldCheck size={32} strokeWidth={1.5} /></div>
             <div className="pas-delivery-text">
-              <strong>Return Policy</strong>
-              <span>Free return within 7 days for defective items.</span>
+              <strong>No Returns / No Refunds</strong>
+              <span>All sales are final upon delivery. Manufacturer warranty applies.</span>
             </div>
           </div>
 
-          <hr style={{ border: 'none', borderTop: '1px solid var(--dark-border)', margin: 0 }} />
+          <hr style={{ border: 'none', borderTop: '1px solid var(--border)', margin: 0 }} />
 
           <div className="pas-qty">
             <span>Quantity</span>
@@ -283,8 +283,8 @@ export default function ProductDetails() {
               </>
             )}
             {product.description && (
-              <div style={{ marginTop: '16px', padding: '16px 20px', background: 'rgba(255,255,255,0.03)', borderRadius: 'var(--radius-sm)', borderLeft: '3px solid var(--primary)' }}>
-                <p style={{ margin: 0, fontSize: '14px', lineHeight: '1.8', color: 'var(--gray-1)', whiteSpace: 'pre-line' }}>{product.description}</p>
+              <div style={{ marginTop: '16px', padding: '16px 20px', background: 'var(--surface2)', border: '1px solid var(--border)', borderLeft: '3px solid var(--primary)', borderRadius: 'var(--radius-sm)' }}>
+                <p style={{ margin: 0, fontSize: '14px', lineHeight: '1.8', color: 'var(--text-b)', whiteSpace: 'pre-line' }}>{product.description}</p>
               </div>
             )}
           </div>

@@ -175,7 +175,7 @@ export default function Checkout() {
     }
   };
 
-  const inputStyle = { width: '100%', background: 'var(--dark)', border: '1.5px solid var(--dark-border)', color: 'var(--white)', padding: '12px 16px', borderRadius: 'var(--radius-sm)', fontSize: '14px' };
+  const inputStyle = { width: '100%', background: 'var(--surface)', border: '1.5px solid var(--border)', color: 'var(--text-h)', padding: '12px 16px', borderRadius: 'var(--radius-sm)', fontSize: '14px' };
 
   if (authLoading || (!user && !placed)) {
     return (
@@ -195,12 +195,12 @@ export default function Checkout() {
             <CheckCircle size={52} color="var(--success)" strokeWidth={1.5} />
           </div>
           <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '32px', fontWeight: 900, color: 'var(--success)', marginBottom: '12px' }}>Order Placed!</h1>
-          <p style={{ color: 'var(--gray-1)', fontSize: '16px', marginBottom: '8px' }}>Thank you for your purchase. We are currently verifying your payment receipt.</p>
-          <p style={{ color: 'var(--gray-1)', fontSize: '14px', marginBottom: '24px' }}>You will receive an email notification once your order is confirmed and processing.</p>
+          <p style={{ color: 'var(--text-m)', fontSize: '16px', marginBottom: '8px' }}>Thank you for your purchase. We are currently verifying your payment receipt.</p>
+          <p style={{ color: 'var(--text-m)', fontSize: '14px', marginBottom: '24px' }}>You will receive an email notification once your order is confirmed and processing.</p>
           <p style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '20px', marginBottom: '32px' }}>Order Total: {formatCurrency(finalTotal)}</p>
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-            <Link to="/profile" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--primary)', color: 'var(--black)', padding: '14px 28px', borderRadius: 'var(--radius-md)', fontWeight: 800 }}>Track Order <ChevronRight size={16} /></Link>
-            <Link to="/shop" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--dark-card)', border: '1px solid var(--dark-border)', color: 'var(--white)', padding: '14px 28px', borderRadius: 'var(--radius-md)', fontWeight: 700 }}>Continue Shopping</Link>
+            <Link to="/profile" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--primary)', color: '#fff', padding: '14px 28px', borderRadius: 'var(--radius-md)', fontWeight: 800 }}>Track Order <ChevronRight size={16} /></Link>
+            <Link to="/shop" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--surface)', border: '1.5px solid var(--border)', color: 'var(--text-h)', padding: '14px 28px', borderRadius: 'var(--radius-md)', fontWeight: 700 }}>Continue Shopping</Link>
           </div>
         </div>
       ) : (
@@ -212,17 +212,17 @@ export default function Checkout() {
             {steps.map((s, i) => (
               <React.Fragment key={s}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                  <div style={{ width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '14px', background: i <= step ? 'var(--primary)' : 'var(--dark-card)', color: i <= step ? 'var(--black)' : 'var(--gray-1)', border: `2px solid ${i <= step ? 'var(--primary)' : 'var(--dark-border)'}`, transition: 'var(--transition)' }}>{i < step ? '✓' : i + 1}</div>
-                  <span style={{ fontSize: '12px', fontWeight: 600, color: i === step ? 'var(--primary)' : 'var(--gray-1)' }}>{s}</span>
+                  <div style={{ width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '14px', background: i <= step ? 'var(--primary)' : 'var(--surface2)', color: i <= step ? '#fff' : 'var(--text-m)', border: `2px solid ${i <= step ? 'var(--primary)' : 'var(--border)'}`, transition: 'var(--transition)' }}>{i < step ? '✓' : i + 1}</div>
+                  <span style={{ fontSize: '12px', fontWeight: 600, color: i === step ? 'var(--primary)' : 'var(--text-m)' }}>{s}</span>
                 </div>
-                {i < steps.length - 1 && <div style={{ flex: 1, height: '2px', background: i < step ? 'var(--primary)' : 'var(--dark-border)', margin: '0 8px', marginBottom: '20px', transition: 'var(--transition)' }}></div>}
+                {i < steps.length - 1 && <div style={{ flex: 1, height: '2px', background: i < step ? 'var(--primary)' : 'var(--border)', margin: '0 8px', marginBottom: '20px', transition: 'var(--transition)' }}></div>}
               </React.Fragment>
             ))}
           </div>
 
           <div className="cart-grid" style={{ gridTemplateColumns: '1fr 360px', alignItems: 'start' }}>
             {/* Steps Content */}
-            <div style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-lg)', padding: '32px' }}>
+            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: '32px' }}>
               {step === 0 && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '10px' }}><MapPin size={20} color="var(--primary)" /> Delivery Details</h3>
@@ -235,25 +235,25 @@ export default function Checkout() {
 
                   {[['Full Name', 'fullName', 'text', 'e.g., Hassan Doe'], ['Phone', 'phone', 'tel', 'e.g., +234 800 000 0000'], ['Delivery Address', 'address', 'text', 'e.g., 5 Ada George Road, Rumuola']].map(([label, key, type, placeholder]) => (
                     <div key={key}>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--gray-1)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>{label}</label>
-                      <input type={type} placeholder={placeholder} value={formData[key]} onChange={e => setFormData(p => ({ ...p, [key]: e.target.value }))} style={inputStyle} onFocus={e => e.target.style.borderColor='var(--primary)'} onBlur={e => e.target.style.borderColor='var(--dark-border)'} required />
+                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-m)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>{label}</label>
+                      <input type={type} placeholder={placeholder} value={formData[key]} onChange={e => setFormData(p => ({ ...p, [key]: e.target.value }))} style={inputStyle} onFocus={e => e.target.style.borderColor='var(--primary)'} onBlur={e => e.target.style.borderColor='var(--border)'} required />
                     </div>
                   ))}
 
                   {/* Locked City & State */}
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--gray-1)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>City</label>
-                      <div style={{ ...inputStyle, display: 'flex', alignItems: 'center', justifyContent: 'space-between', opacity: 0.7 }}>
+                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-m)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>City</label>
+                      <div style={{ ...inputStyle, display: 'flex', alignItems: 'center', justifyContent: 'space-between', opacity: 0.9 }}>
                         <span>Port Harcourt</span>
-                        <span style={{ fontSize: '10px', background: 'var(--primary)', color: 'var(--black)', padding: '2px 6px', borderRadius: '4px', fontWeight: 800 }}>LOCKED</span>
+                        <span style={{ fontSize: '10px', background: 'var(--primary)', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontWeight: 800 }}>LOCKED</span>
                       </div>
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--gray-1)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>State</label>
-                      <div style={{ ...inputStyle, display: 'flex', alignItems: 'center', justifyContent: 'space-between', opacity: 0.7 }}>
+                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-m)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>State</label>
+                      <div style={{ ...inputStyle, display: 'flex', alignItems: 'center', justifyContent: 'space-between', opacity: 0.9 }}>
                         <span>Rivers State</span>
-                        <span style={{ fontSize: '10px', background: 'var(--primary)', color: 'var(--black)', padding: '2px 6px', borderRadius: '4px', fontWeight: 800 }}>LOCKED</span>
+                        <span style={{ fontSize: '10px', background: 'var(--primary)', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontWeight: 800 }}>LOCKED</span>
                       </div>
                     </div>
                   </div>
@@ -265,7 +265,7 @@ export default function Checkout() {
                     }
                     setError('');
                     setStep(1);
-                  }} style={{ background: 'var(--primary)', color: 'var(--black)', padding: '14px', borderRadius: 'var(--radius-md)', fontWeight: 800, fontSize: '15px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: '10px' }}>Continue to Payment <ChevronRight size={18} /></button>
+                  }} style={{ background: 'var(--primary)', color: '#fff', padding: '14px', borderRadius: 'var(--radius-md)', fontWeight: 800, fontSize: '15px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: '10px' }}>Continue to Payment <ChevronRight size={18} /></button>
                   {error && <p style={{ color: 'var(--danger)', fontSize: '13px', marginTop: '-10px', textAlign: 'center' }}>{error}</p>}
                 </div>
               )}
@@ -275,7 +275,7 @@ export default function Checkout() {
                   <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '10px' }}><Building2 size={20} color="var(--primary)" /> Payment Method</h3>
                   {[
                     { id: 'bank_transfer', label: 'Direct Bank Transfer', icon: Building2, desc: 'Pay directly to our Sterling Bank corporate account' },
-                    { id: 'installment', label: 'Installment Payment', icon: Truck, desc: 'Pay in structured installments (30% upfront deposit)' },
+                    { id: 'installment', label: 'Installment Payment', icon: Truck, desc: 'Pay in structured installments (30% down payment)' },
                     ...(user?.isAdmin ? [{ id: 'admin_cash', label: 'Admin POS / Cash', icon: Zap, desc: 'Direct order placement (Admin only)' }] : []),
                   ].map(method => (
                     <div 
@@ -283,74 +283,74 @@ export default function Checkout() {
                       onClick={() => !method.disabled && setFormData(p => ({ ...p, payMethod: method.id }))} 
                       style={{ 
                         display: 'flex', alignItems: 'center', gap: '16px', padding: '16px 20px', 
-                        border: `2px solid ${formData.payMethod === method.id ? 'var(--primary)' : 'var(--dark-border)'}`, 
+                        border: `2px solid ${formData.payMethod === method.id ? 'var(--primary)' : 'var(--border)'}`, 
                         borderRadius: 'var(--radius-md)', 
                         cursor: method.disabled ? 'not-allowed' : 'pointer', 
-                        background: formData.payMethod === method.id ? 'rgba(255,206,30,0.05)' : 'var(--dark)', 
+                        background: formData.payMethod === method.id ? 'rgba(208,2,27,0.05)' : 'var(--surface)', 
                         opacity: method.disabled ? 0.5 : 1,
                         transition: 'var(--transition)' 
                       }}
                     >
-                      <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(255,206,30,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(208,2,27,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                         <method.icon size={20} color="var(--primary)" />
                       </div>
                       <div>
                         <div style={{ fontWeight: 700, fontSize: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                           {method.label}
-                          {method.disabled && <span style={{ fontSize: '10px', background: 'var(--danger)', color: 'var(--white)', padding: '2px 6px', borderRadius: '10px' }}>Soon</span>}
+                          {method.disabled && <span style={{ fontSize: '10px', background: 'var(--danger)', color: '#fff', padding: '2px 6px', borderRadius: '10px' }}>Soon</span>}
                         </div>
-                        <div style={{ fontSize: '12px', color: 'var(--gray-1)' }}>{method.desc}</div>
+                        <div style={{ fontSize: '12px', color: 'var(--text-m)' }}>{method.desc}</div>
                       </div>
-                      <div style={{ marginLeft: 'auto', width: '20px', height: '20px', borderRadius: '50%', border: `2px solid ${formData.payMethod === method.id ? 'var(--primary)' : 'var(--dark-border)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{ marginLeft: 'auto', width: '20px', height: '20px', borderRadius: '50%', border: `2px solid ${formData.payMethod === method.id ? 'var(--primary)' : 'var(--border)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         {formData.payMethod === method.id && <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'var(--primary)' }}></div>}
                       </div>
                     </div>
                   ))}
                   <div style={{ display: 'flex', gap: '12px', marginTop: '10px' }}>
-                    <button onClick={() => setStep(0)} style={{ flex: 1, background: 'var(--dark)', border: '1px solid var(--dark-border)', color: 'var(--white)', padding: '14px', borderRadius: 'var(--radius-md)', fontWeight: 700, cursor: 'pointer' }}>Back</button>
-                    <button onClick={() => setStep(2)} style={{ flex: 2, background: 'var(--primary)', color: 'var(--black)', padding: '14px', borderRadius: 'var(--radius-md)', fontWeight: 800, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>Review Order <ChevronRight size={18} /></button>
+                    <button onClick={() => setStep(0)} style={{ flex: 1, background: 'var(--surface)', border: '1.5px solid var(--border)', color: 'var(--text-h)', padding: '14px', borderRadius: 'var(--radius-md)', fontWeight: 700, cursor: 'pointer' }}>Back</button>
+                    <button onClick={() => setStep(2)} style={{ flex: 2, background: 'var(--primary)', color: '#fff', padding: '14px', borderRadius: 'var(--radius-md)', fontWeight: 800, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>Review Order <ChevronRight size={18} /></button>
                   </div>
                 </div>
               )}
 
               {step === 2 && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 700 }}>Review & Pay</h3>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 700, color: 'var(--text-h)' }}>Review & Pay</h3>
                   
                   {formData.payMethod === 'bank_transfer' && (
-                    <div style={{ background: 'var(--dark)', border: '1px solid var(--primary)', borderRadius: 'var(--radius-md)', padding: '20px', marginBottom: '8px' }}>
+                    <div style={{ background: 'var(--surface)', border: '1px solid var(--primary)', borderRadius: 'var(--radius-md)', padding: '20px', marginBottom: '8px' }}>
                       <h4 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--primary)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <Building2 size={18} /> Bank Account Details
                       </h4>
-                      <p style={{ fontSize: '13px', color: 'var(--gray-1)', marginBottom: '16px' }}>
-                        Please transfer the exact amount of <strong>{formatCurrency(grandTotal)}</strong> to the account below. Your order will not ship until we receive payment.
+                      <p style={{ fontSize: '13px', color: 'var(--text-m)', marginBottom: '16px' }}>
+                        Please transfer the exact amount of <strong style={{ color: 'var(--text-h)' }}>{formatCurrency(grandTotal)}</strong> to the account below. Your order will not ship until we receive payment.
                       </p>
                       
-                      <div style={{ background: 'var(--black)', padding: '16px', borderRadius: 'var(--radius-sm)', display: 'grid', gap: '12px', border: '1px solid var(--dark-border)', marginBottom: '20px' }}>
+                      <div style={{ background: 'var(--surface2)', padding: '16px', borderRadius: 'var(--radius-sm)', display: 'grid', gap: '12px', border: '1px solid var(--border)', marginBottom: '20px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ color: 'var(--gray-1)', fontSize: '13px' }}>Bank Name</span>
-                          <span style={{ fontWeight: 700, fontSize: '14px' }}>Sterling Bank</span>
+                          <span style={{ color: 'var(--text-m)', fontSize: '13px' }}>Bank Name</span>
+                          <span style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-h)' }}>Sterling Bank</span>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ color: 'var(--gray-1)', fontSize: '13px' }}>Account Name</span>
-                          <span style={{ fontWeight: 700, fontSize: '14px' }}>Smart Choice Global Resources Ltd</span>
+                          <span style={{ color: 'var(--text-m)', fontSize: '13px' }}>Account Name</span>
+                          <span style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-h)' }}>Smart Choice Global Resources Ltd</span>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ color: 'var(--gray-1)', fontSize: '13px' }}>Account Number</span>
-                          <span style={{ fontWeight: 800, fontSize: '18px', color: 'var(--white)', letterSpacing: '1px' }}>8682287868</span>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ color: 'var(--text-m)', fontSize: '13px' }}>Account Number</span>
+                          <span style={{ fontWeight: 800, fontSize: '18px', color: 'var(--primary)', letterSpacing: '1px' }}>8682287868</span>
                         </div>
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--white)', marginBottom: '8px' }}>Upload Payment Receipt <span style={{ color: 'var(--danger)' }}>*</span></label>
+                        <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-h)', marginBottom: '8px' }}>Upload Payment Receipt <span style={{ color: 'var(--danger)' }}>*</span></label>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                          <label style={{ flex: 1, background: 'var(--dark-card)', border: '1.5px dashed var(--dark-border)', padding: '16px', borderRadius: 'var(--radius-sm)', textAlign: 'center', cursor: 'pointer', transition: 'var(--transition)' }}>
+                          <label style={{ flex: 1, background: 'var(--surface2)', border: '1.5px dashed var(--border)', padding: '16px', borderRadius: 'var(--radius-sm)', textAlign: 'center', cursor: 'pointer', transition: 'var(--transition)' }}>
                             <Upload size={20} color="var(--primary)" style={{ margin: '0 auto 8px' }} />
-                            <span style={{ fontSize: '13px', color: 'var(--gray-1)' }}>Click to upload screenshot</span>
+                            <span style={{ fontSize: '13px', color: 'var(--text-m)' }}>Click to upload screenshot</span>
                             <input type="file" accept="image/*" onChange={handleReceiptChange} style={{ display: 'none' }} />
                           </label>
                           {receiptPreview && (
-                            <div style={{ width: '80px', height: '80px', borderRadius: 'var(--radius-sm)', overflow: 'hidden', border: '1px solid var(--dark-border)' }}>
+                            <div style={{ width: '80px', height: '80px', borderRadius: 'var(--radius-sm)', overflow: 'hidden', border: '1px solid var(--border)' }}>
                               <img src={receiptPreview} alt="Receipt preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                           )}
@@ -360,20 +360,20 @@ export default function Checkout() {
                   )}
 
                   {formData.payMethod === 'installment' && (
-                    <div style={{ background: 'var(--dark)', border: '1px solid var(--primary)', borderRadius: 'var(--radius-md)', padding: '20px', marginBottom: '8px' }}>
+                    <div style={{ background: 'var(--surface)', border: '1px solid var(--primary)', borderRadius: 'var(--radius-md)', padding: '20px', marginBottom: '8px' }}>
                       <h4 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--primary)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <Truck size={18} /> Installment Plan Details
                       </h4>
-                      <p style={{ fontSize: '13px', color: 'var(--gray-1)', marginBottom: '16px' }}>
-                        Choose a payment plan that works for you. A 30% upfront deposit is required before shipping.
+                      <p style={{ fontSize: '13px', color: 'var(--text-m)', marginBottom: '16px' }}>
+                        Choose a payment plan that works for you. 30% Down payment.
                       </p>
 
                       <div style={{ marginBottom: '20px' }}>
-                        <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--white)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Select Duration</label>
+                        <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-h)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Select Duration</label>
                         <select 
                           value={formData.installmentPlan}
                           onChange={(e) => setFormData(p => ({ ...p, installmentPlan: e.target.value }))}
-                          style={{ width: '100%', background: 'var(--black)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-sm)', padding: '12px 14px', fontSize: '14px', color: 'var(--white)', outline: 'none' }}
+                          style={{ width: '100%', background: 'var(--surface)', border: '1.5px solid var(--border)', borderRadius: 'var(--radius-sm)', padding: '12px 14px', fontSize: '14px', color: 'var(--text-h)', outline: 'none' }}
                         >
                           <optgroup label="Weekly Plans (2% interest/week)">
                             {INSTALLMENT_OPTIONS.filter(o => o.type === 'weekly').map(opt => (
@@ -388,41 +388,41 @@ export default function Checkout() {
                         </select>
                       </div>
                       
-                      <div style={{ background: 'var(--black)', padding: '16px', borderRadius: 'var(--radius-sm)', display: 'grid', gap: '12px', border: '1px solid var(--dark-border)', marginBottom: '20px' }}>
+                      <div style={{ background: 'var(--surface2)', padding: '16px', borderRadius: 'var(--radius-sm)', display: 'grid', gap: '12px', border: '1px solid var(--border)', marginBottom: '20px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ color: 'var(--gray-1)', fontSize: '13px' }}>Subtotal (inc. Delivery)</span>
-                          <span style={{ fontWeight: 700, fontSize: '14px' }}>{formatCurrency(subTotal)}</span>
+                          <span style={{ color: 'var(--text-m)', fontSize: '13px' }}>Subtotal (inc. Delivery)</span>
+                          <span style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-h)' }}>{formatCurrency(subTotal)}</span>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ color: 'var(--warning)', fontSize: '13px' }}>Interest ({(activePlan.interestRate * 100).toFixed(0)}%)</span>
+                          <span style={{ color: 'var(--warning)', fontSize: '13px', fontWeight: 600 }}>Interest ({(activePlan.interestRate * 100).toFixed(0)}%)</span>
                           <span style={{ fontWeight: 700, fontSize: '14px', color: 'var(--warning)' }}>+{formatCurrency(installmentInterest)}</span>
                         </div>
-                        <div style={{ height: '1px', background: 'var(--dark-border)', margin: '4px 0' }}></div>
+                        <div style={{ height: '1px', background: 'var(--border)', margin: '4px 0' }}></div>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ color: 'var(--white)', fontSize: '14px', fontWeight: 800 }}>Total Payable</span>
+                          <span style={{ color: 'var(--text-h)', fontSize: '14px', fontWeight: 800 }}>Total Payable</span>
                           <span style={{ fontWeight: 800, fontSize: '16px', color: 'var(--primary)' }}>{formatCurrency(grandTotal)}</span>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '8px' }}>
-                          <span style={{ color: 'var(--success)', fontSize: '13px', fontWeight: 700 }}>Upfront Deposit (30%)</span>
+                          <span style={{ color: 'var(--success)', fontSize: '13px', fontWeight: 700 }}>Down Payment (30%)</span>
                           <span style={{ fontWeight: 800, fontSize: '14px', color: 'var(--success)' }}>{formatCurrency(depositAmount)}</span>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ color: 'var(--gray-1)', fontSize: '13px' }}>Remaining ({activePlan.duration} payments)</span>
-                          <span style={{ fontWeight: 700, fontSize: '14px' }}>{formatCurrency(recurringAmount)} / {activePlan.type === 'weekly' ? 'week' : 'month'}</span>
+                          <span style={{ color: 'var(--text-m)', fontSize: '13px' }}>Remaining ({activePlan.duration} payments)</span>
+                          <span style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-h)' }}>{formatCurrency(recurringAmount)} / {activePlan.type === 'weekly' ? 'week' : 'month'}</span>
                         </div>
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--white)', marginBottom: '8px' }}>Upload Initial Deposit Receipt <span style={{ color: 'var(--danger)' }}>*</span></label>
-                        <p style={{ fontSize: '12px', color: 'var(--gray-1)', marginBottom: '12px' }}>Please transfer your deposit of <strong>{formatCurrency(depositAmount)}</strong> to Sterling Bank (8682287868) — Smart Choice Global Resources Ltd.</p>
+                        <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-h)', marginBottom: '8px' }}>Upload Initial Down Payment Receipt <span style={{ color: 'var(--danger)' }}>*</span></label>
+                        <p style={{ fontSize: '12px', color: 'var(--text-m)', marginBottom: '12px' }}>Please transfer your down payment of <strong style={{ color: 'var(--text-h)' }}>{formatCurrency(depositAmount)}</strong> to Sterling Bank (8682287868) — Smart Choice Global Resources Ltd.</p>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                          <label style={{ flex: 1, background: 'var(--dark-card)', border: '1.5px dashed var(--dark-border)', padding: '16px', borderRadius: 'var(--radius-sm)', textAlign: 'center', cursor: 'pointer', transition: 'var(--transition)' }}>
+                          <label style={{ flex: 1, background: 'var(--surface2)', border: '1.5px dashed var(--border)', padding: '16px', borderRadius: 'var(--radius-sm)', textAlign: 'center', cursor: 'pointer', transition: 'var(--transition)' }}>
                             <Upload size={20} color="var(--primary)" style={{ margin: '0 auto 8px' }} />
-                            <span style={{ fontSize: '13px', color: 'var(--gray-1)' }}>Click to upload screenshot</span>
+                            <span style={{ fontSize: '13px', color: 'var(--text-m)' }}>Click to upload screenshot</span>
                             <input type="file" accept="image/*" onChange={handleReceiptChange} style={{ display: 'none' }} />
                           </label>
                           {receiptPreview && (
-                            <div style={{ width: '80px', height: '80px', borderRadius: 'var(--radius-sm)', overflow: 'hidden', border: '1px solid var(--dark-border)' }}>
+                            <div style={{ width: '80px', height: '80px', borderRadius: 'var(--radius-sm)', overflow: 'hidden', border: '1px solid var(--border)' }}>
                               <img src={receiptPreview} alt="Receipt preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                           )}
@@ -434,35 +434,35 @@ export default function Checkout() {
                   {/* Terms Checkboxes */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '24px', marginBottom: '16px' }}>
                     {/* Terms */}
-                    <div onClick={() => !termsAccepted.terms && setActiveLegal('terms')} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', padding: '16px', borderRadius: 'var(--radius-md)', border: termsAccepted.terms ? '2px solid rgba(0,230,118,0.3)' : '2px solid var(--dark-border)', background: termsAccepted.terms ? 'rgba(0,230,118,0.05)' : 'var(--dark-card)', cursor: termsAccepted.terms ? 'default' : 'pointer', transition: 'var(--transition)' }}>
+                    <div onClick={() => !termsAccepted.terms && setActiveLegal('terms')} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', padding: '16px', borderRadius: 'var(--radius-md)', border: termsAccepted.terms ? '2px solid rgba(0,230,118,0.4)' : '1.5px solid var(--border)', background: termsAccepted.terms ? 'rgba(0,230,118,0.08)' : 'var(--surface2)', cursor: termsAccepted.terms ? 'default' : 'pointer', transition: 'var(--transition)' }}>
                       <div style={{ flexShrink: 0, marginTop: '2px', width: '20px', height: '20px', borderRadius: '4px', border: termsAccepted.terms ? '2px solid var(--success)' : '2px solid var(--gray-2)', background: termsAccepted.terms ? 'var(--success)' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        {termsAccepted.terms && <CheckCircle size={14} color="var(--black)" strokeWidth={3} />}
+                        {termsAccepted.terms && <CheckCircle size={14} color="#fff" strokeWidth={3} />}
                       </div>
                       <div style={{ flex: 1 }}>
-                        <p style={{ fontSize: '13px', fontWeight: 700, color: termsAccepted.terms ? 'var(--success)' : 'var(--white)', margin: 0, lineHeight: 1.5 }}>
+                        <p style={{ fontSize: '13px', fontWeight: 700, color: termsAccepted.terms ? 'var(--success)' : 'var(--text-h)', margin: 0, lineHeight: 1.5 }}>
                           I have read and accept the <span style={{ color: 'var(--primary)', cursor: 'pointer', textDecoration: 'underline' }} onClick={e => { e.stopPropagation(); setActiveLegal('terms'); }}>Terms & Conditions</span> including the No-Return & No-Refund policy.
                         </p>
                         {termsAccepted.terms ? (
                           <p style={{ fontSize: '11px', color: 'var(--success)', marginTop: '4px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>✓ Accepted</p>
                         ) : (
-                          <p style={{ fontSize: '11px', color: 'var(--gray-2)', marginTop: '4px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Click to read & accept</p>
+                          <p style={{ fontSize: '11px', color: 'var(--text-m)', marginTop: '4px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Click to read & accept</p>
                         )}
                       </div>
                     </div>
 
                     {/* Privacy */}
-                    <div onClick={() => !termsAccepted.privacy && setActiveLegal('privacy')} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', padding: '16px', borderRadius: 'var(--radius-md)', border: termsAccepted.privacy ? '2px solid rgba(0,230,118,0.3)' : '2px solid var(--dark-border)', background: termsAccepted.privacy ? 'rgba(0,230,118,0.05)' : 'var(--dark-card)', cursor: termsAccepted.privacy ? 'default' : 'pointer', transition: 'var(--transition)' }}>
+                    <div onClick={() => !termsAccepted.privacy && setActiveLegal('privacy')} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', padding: '16px', borderRadius: 'var(--radius-md)', border: termsAccepted.privacy ? '2px solid rgba(0,230,118,0.4)' : '1.5px solid var(--border)', background: termsAccepted.privacy ? 'rgba(0,230,118,0.08)' : 'var(--surface2)', cursor: termsAccepted.privacy ? 'default' : 'pointer', transition: 'var(--transition)' }}>
                       <div style={{ flexShrink: 0, marginTop: '2px', width: '20px', height: '20px', borderRadius: '4px', border: termsAccepted.privacy ? '2px solid var(--success)' : '2px solid var(--gray-2)', background: termsAccepted.privacy ? 'var(--success)' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        {termsAccepted.privacy && <CheckCircle size={14} color="var(--black)" strokeWidth={3} />}
+                        {termsAccepted.privacy && <CheckCircle size={14} color="#fff" strokeWidth={3} />}
                       </div>
                       <div style={{ flex: 1 }}>
-                        <p style={{ fontSize: '13px', fontWeight: 700, color: termsAccepted.privacy ? 'var(--success)' : 'var(--white)', margin: 0, lineHeight: 1.5 }}>
+                        <p style={{ fontSize: '13px', fontWeight: 700, color: termsAccepted.privacy ? 'var(--success)' : 'var(--text-h)', margin: 0, lineHeight: 1.5 }}>
                           I have read and accept the <span style={{ color: 'var(--primary)', cursor: 'pointer', textDecoration: 'underline' }} onClick={e => { e.stopPropagation(); setActiveLegal('privacy'); }}>Privacy Policy</span> and consent to data processing under Nigerian NDPR.
                         </p>
                         {termsAccepted.privacy ? (
                           <p style={{ fontSize: '11px', color: 'var(--success)', marginTop: '4px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>✓ Accepted</p>
                         ) : (
-                          <p style={{ fontSize: '11px', color: 'var(--gray-2)', marginTop: '4px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Click to read & accept</p>
+                          <p style={{ fontSize: '11px', color: 'var(--text-m)', marginTop: '4px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Click to read & accept</p>
                         )}
                       </div>
                     </div>
@@ -475,8 +475,8 @@ export default function Checkout() {
                   )}
 
                   <div style={{ display: 'flex', gap: '12px' }}>
-                    <button onClick={() => setStep(1)} disabled={loading} style={{ flex: 1, background: 'var(--dark)', border: '1px solid var(--dark-border)', color: 'var(--white)', padding: '14px', borderRadius: 'var(--radius-md)', fontWeight: 700, cursor: loading ? 'not-allowed' : 'pointer' }}>Back</button>
-                    <button onClick={handlePlaceOrderClick} disabled={loading} style={{ flex: 2, background: 'var(--primary)', color: 'var(--black)', padding: '14px', borderRadius: 'var(--radius-md)', fontWeight: 800, border: 'none', cursor: loading ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', boxShadow: '0 8px 24px var(--primary-glow)' }}>
+                    <button onClick={() => setStep(1)} disabled={loading} style={{ flex: 1, background: 'var(--surface)', border: '1.5px solid var(--border)', color: 'var(--text-h)', padding: '14px', borderRadius: 'var(--radius-md)', fontWeight: 700, cursor: loading ? 'not-allowed' : 'pointer' }}>Back</button>
+                    <button onClick={handlePlaceOrderClick} disabled={loading} style={{ flex: 2, background: 'var(--primary)', color: '#fff', padding: '14px', borderRadius: 'var(--radius-md)', fontWeight: 800, border: 'none', cursor: loading ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', boxShadow: '0 8px 24px var(--primary-glow)' }}>
                       {loading ? <><Loader2 className="spinner" size={18} /> Processing...</> : <><Zap size={18} /> Place Order — {formatCurrency(formData.payMethod === 'installment' ? depositAmount : grandTotal)}</>}
                     </button>
                   </div>
@@ -485,27 +485,27 @@ export default function Checkout() {
             </div>
 
             {/* Order Summary Sidebar */}
-            <div style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-lg)', padding: '24px', position: 'sticky', top: '90px' }}>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '16px', fontWeight: 800, marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid var(--dark-border)' }}>Order Summary</h3>
+            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: '24px', position: 'sticky', top: '90px' }}>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '16px', fontWeight: 800, color: 'var(--text-h)', marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid var(--border)' }}>Order Summary</h3>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '300px', overflowY: 'auto', marginBottom: '16px' }}>
                 {cart.map((item, idx) => (
                   <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px' }}>
-                    <div style={{ width: '48px', height: '48px', background: 'var(--dark)', borderRadius: 'var(--radius-sm)', overflow: 'hidden', flexShrink: 0 }}>
+                    <div style={{ width: '48px', height: '48px', background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', overflow: 'hidden', flexShrink: 0 }}>
                       <img src={item.imgUrl || item.image || item.img} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={e => e.target.style.display='none'} />
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontWeight: 600, color: 'var(--white)', marginBottom: '2px', lineHeight: 1.3 }}>{item.name}</div>
-                      <div style={{ color: 'var(--gray-1)', fontSize: '11px' }}>Qty: {item.qty}</div>
+                      <div style={{ fontWeight: 600, color: 'var(--text-h)', marginBottom: '2px', lineHeight: 1.3 }}>{item.name}</div>
+                      <div style={{ color: 'var(--text-m)', fontSize: '11px' }}>Qty: {item.qty}</div>
                     </div>
-                    <div style={{ fontWeight: 700 }}>{formatCurrency(item.price * item.qty)}</div>
+                    <div style={{ fontWeight: 700, color: 'var(--text-h)' }}>{formatCurrency(item.price * item.qty)}</div>
                   </div>
                 ))}
               </div>
 
-              <div style={{ borderTop: '1px solid var(--dark-border)', paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: 'var(--gray-1)' }}><span>Subtotal</span><span style={{ color: 'var(--white)', fontWeight: 600 }}>{formatCurrency(cartTotal)}</span></div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '13px', color: 'var(--gray-1)' }}>
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: 'var(--text-m)' }}><span>Subtotal</span><span style={{ color: 'var(--text-h)', fontWeight: 600 }}>{formatCurrency(cartTotal)}</span></div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '13px', color: 'var(--text-m)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <span>Delivery</span>
                     {hasSpecialDelivery && (
@@ -531,7 +531,7 @@ export default function Checkout() {
                       </button>
                     )}
                   </div>
-                  <span style={{ color: 'var(--white)', fontWeight: 600 }}>{formatCurrency(delivery)}</span>
+                  <span style={{ color: 'var(--text-h)', fontWeight: 600 }}>{formatCurrency(delivery)}</span>
                 </div>
 
                 {hasSpecialDelivery && (
@@ -559,7 +559,7 @@ export default function Checkout() {
                   </div>
                 )}
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 800, paddingTop: '12px', borderTop: '1px solid var(--dark-border)', marginTop: '4px' }}><span>Total</span><span style={{ color: 'var(--primary)' }}>{formatCurrency(grandTotal)}</span></div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 800, paddingTop: '12px', borderTop: '1px solid var(--border)', marginTop: '4px' }}><span style={{ color: 'var(--text-h)' }}>Total</span><span style={{ color: 'var(--primary)' }}>{formatCurrency(grandTotal)}</span></div>
               </div>
             </div>
           </div>
@@ -568,25 +568,25 @@ export default function Checkout() {
 
       {/* Legal Modal */}
       {activeLegal && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.8)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', backdropFilter: 'blur(4px)' }}>
-          <div style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-lg)', padding: '32px', width: '100%', maxWidth: '600px', maxHeight: '80vh', overflowY: 'auto', boxShadow: '0 20px 40px rgba(0,0,0,0.5)', position: 'relative' }}>
-            <button onClick={() => setActiveLegal(null)} style={{ position: 'absolute', top: '24px', right: '24px', background: 'var(--dark)', border: '1px solid var(--dark-border)', color: 'var(--white)', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', backdropFilter: 'blur(4px)' }}>
+          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: '32px', width: '100%', maxWidth: '600px', maxHeight: '80vh', overflowY: 'auto', boxShadow: '0 20px 40px rgba(0,0,0,0.25)', position: 'relative' }}>
+            <button onClick={() => setActiveLegal(null)} style={{ position: 'absolute', top: '24px', right: '24px', background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--text-h)', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
               <X size={16} />
             </button>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, marginBottom: '20px', color: 'var(--white)' }}>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, marginBottom: '20px', color: 'var(--text-h)' }}>
               {activeLegal === 'terms' ? 'Terms & Conditions' : 'Privacy Policy'}
             </h3>
-            <div style={{ color: 'var(--gray-1)', fontSize: '14px', lineHeight: 1.6, marginBottom: '32px' }}>
+            <div style={{ color: 'var(--text-b)', fontSize: '14px', lineHeight: 1.6, marginBottom: '32px' }}>
               {activeLegal === 'terms' ? (
                 <>
                   <p style={{ marginBottom: '16px' }}>By proceeding, you agree to Smart Choice Electronics' terms of service. All purchases are final once delivered and verified in good condition.</p>
-                  <h4 style={{ color: 'var(--white)', fontWeight: 700, marginBottom: '8px' }}>Strict No-Return &amp; No-Refund Policy</h4>
+                  <h4 style={{ color: 'var(--text-h)', fontWeight: 700, marginBottom: '8px' }}>Strict No-Return &amp; No-Refund Policy</h4>
                   <p>Please note that Smart Choice Global Resources Ltd operates a strict No-Return and No-Refund policy. Once an item is purchased and collected or delivered, it cannot be returned for a refund or exchanged unless it is Dead On Arrival (DOA) and verified by our certified technicians within 24 hours of delivery.</p>
                 </>
               ) : (
                 <>
                   <p style={{ marginBottom: '16px' }}>We value your privacy and are committed to safeguarding your personal data in full compliance with the <strong>Nigeria Data Protection Regulation (NDPR)</strong> and the <strong>Nigeria Data Protection Act (NDPA)</strong>.</p>
-                  <h4 style={{ color: 'var(--white)', fontWeight: 700, marginBottom: '8px' }}>NDPR / NDPA Data Protection Consent</h4>
+                  <h4 style={{ color: 'var(--text-h)', fontWeight: 700, marginBottom: '8px' }}>NDPR / NDPA Data Protection Consent</h4>
                   <p style={{ marginBottom: '12px' }}>By accepting this policy, you consent to Smart Choice Global Resources Ltd collecting, storing, and processing your personal data (name, phone number, delivery address, and payment confirmation) exclusively for order fulfillment, fraud prevention, and necessary logistics communication.</p>
                   <p>Your data is processed securely, never sold or leased to third-party advertisers, and retained strictly in accordance with Nigerian data protection statutory standards.</p>
                 </>
@@ -600,7 +600,7 @@ export default function Checkout() {
                   if (activeLegal === 'privacy') setTermsAccepted(p => ({...p, privacy: true}));
                   setActiveLegal(null);
                 }} 
-                style={{ width: '100%', padding: '14px', background: 'var(--primary)', border: 'none', borderRadius: 'var(--radius-md)', color: 'var(--black)', fontWeight: 800, cursor: 'pointer', transition: 'var(--transition)', boxShadow: '0 8px 24px var(--primary-glow)' }}
+                style={{ width: '100%', padding: '14px', background: 'var(--primary)', border: 'none', borderRadius: 'var(--radius-md)', color: '#fff', fontWeight: 800, cursor: 'pointer', transition: 'var(--transition)', boxShadow: '0 8px 24px var(--primary-glow)' }}
               >
                 I Accept
               </button>
@@ -611,11 +611,11 @@ export default function Checkout() {
 
       {/* Special Delivery Notice Popup Modal */}
       {showDeliveryPopup && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.82)', zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', backdropFilter: 'blur(5px)' }}>
-          <div style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-lg)', padding: '28px', width: '100%', maxWidth: '520px', maxHeight: '85vh', overflowY: 'auto', boxShadow: '0 25px 60px rgba(0,0,0,0.6)', position: 'relative' }}>
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', backdropFilter: 'blur(5px)' }}>
+          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: '28px', width: '100%', maxWidth: '520px', maxHeight: '85vh', overflowY: 'auto', boxShadow: '0 25px 60px rgba(0,0,0,0.3)', position: 'relative' }}>
             <button
               onClick={() => setShowDeliveryPopup(false)}
-              style={{ position: 'absolute', top: '20px', right: '20px', background: 'var(--dark)', border: '1px solid var(--dark-border)', color: 'var(--white)', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+              style={{ position: 'absolute', top: '20px', right: '20px', background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--text-h)', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
             >
               <X size={16} />
             </button>
@@ -625,36 +625,36 @@ export default function Checkout() {
                 <Truck size={24} />
               </div>
               <div>
-                <h3 style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 800, color: 'var(--white)' }}>
+                <h3 style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 800, color: 'var(--text-h)' }}>
                   Special Delivery Surcharge Notice
                 </h3>
-                <span style={{ fontSize: '12px', color: 'var(--gray-1)' }}>Base Delivery Fee: {formatCurrency(delivery)}</span>
+                <span style={{ fontSize: '12px', color: 'var(--text-m)' }}>Base Delivery Fee: {formatCurrency(delivery)}</span>
               </div>
             </div>
 
             <div style={{ background: 'rgba(255,94,0,0.08)', border: '1px solid rgba(255,94,0,0.3)', borderRadius: 'var(--radius-sm)', padding: '16px', marginBottom: '18px' }}>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
                 <AlertTriangle size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
-                <p style={{ margin: 0, fontSize: '14px', color: 'var(--white)', lineHeight: 1.5, fontWeight: 600 }}>
+                <p style={{ margin: 0, fontSize: '14px', color: 'var(--text-h)', lineHeight: 1.5, fontWeight: 600 }}>
                   "{deliveryNoticeTemplate}"
                 </p>
               </div>
             </div>
 
             <div style={{ marginBottom: '18px' }}>
-              <h4 style={{ margin: '0 0 10px', fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gray-2)' }}>
+              <h4 style={{ margin: '0 0 10px', fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-m)' }}>
                 Item(s) with Special Delivery Criteria:
               </h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {specialDeliveryItems.map((item, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', background: 'var(--dark)', border: '1px solid var(--dark-border)', borderRadius: '6px', padding: '10px 12px' }}>
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: '6px', padding: '10px 12px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <div style={{ width: '36px', height: '36px', borderRadius: '4px', overflow: 'hidden', background: '#000', flexShrink: 0 }}>
+                      <div style={{ width: '36px', height: '36px', borderRadius: '4px', overflow: 'hidden', background: 'var(--surface)', border: '1px solid var(--border)', flexShrink: 0 }}>
                         <img src={item.imgUrl || item.image || item.img} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={e => e.target.style.display='none'} />
                       </div>
                       <div>
-                        <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--white)' }}>{item.name}</div>
-                        <div style={{ fontSize: '11px', color: 'var(--gray-1)' }}>Qty: {item.qty}</div>
+                        <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-h)' }}>{item.name}</div>
+                        <div style={{ fontSize: '11px', color: 'var(--text-m)' }}>Qty: {item.qty}</div>
                       </div>
                     </div>
                     <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
@@ -669,13 +669,13 @@ export default function Checkout() {
               </div>
             </div>
 
-            <div style={{ background: 'var(--dark)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-sm)', padding: '12px 14px', marginBottom: '22px', fontSize: '12px', color: 'var(--gray-1)', lineHeight: 1.6 }}>
-              ℹ️ <strong>Logistics Policy:</strong> Your checkout includes our base city delivery fee of <strong>{formatCurrency(delivery)}</strong>. For items with heavy weight, large cubic dimensions, or fragile handling requirements, our logistics team may coordinate specialized freight or haulage arrangements upon confirming your order.
+            <div style={{ background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', padding: '12px 14px', marginBottom: '22px', fontSize: '12px', color: 'var(--text-m)', lineHeight: 1.6 }}>
+              ℹ️ <strong style={{ color: 'var(--text-h)' }}>Logistics Policy:</strong> Your checkout includes our base city delivery fee of <strong>{formatCurrency(delivery)}</strong>. For items with heavy weight, large cubic dimensions, or fragile handling requirements, our logistics team may coordinate specialized freight or haulage arrangements upon confirming your order.
             </div>
 
             <button
               onClick={() => setShowDeliveryPopup(false)}
-              style={{ width: '100%', padding: '14px', background: 'var(--primary)', color: 'var(--black)', border: 'none', borderRadius: 'var(--radius-sm)', fontWeight: 800, fontSize: '14px', cursor: 'pointer', transition: 'all 0.2s', boxShadow: '0 4px 16px var(--primary-glow)' }}
+              style={{ width: '100%', padding: '14px', background: 'var(--primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius-sm)', fontWeight: 800, fontSize: '14px', cursor: 'pointer', transition: 'all 0.2s', boxShadow: '0 4px 16px var(--primary-glow)' }}
             >
               I Understand &amp; Continue
             </button>

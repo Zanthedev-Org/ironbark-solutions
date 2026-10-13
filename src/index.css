@@ -22,11 +22,11 @@
   --border:   #E5E7EB;
   --border2:  #D1D5DB;
 
-  /* Text */
+  /* Text - High contrast WCAG AA compliant */
   --text-h:  #0D1526;
-  --text-b:  #2C3550;
-  --text-m:  #5A6580;
-  --text-l:  #8A93A8;
+  --text-b:  #1E293B;
+  --text-m:  #475569;
+  --text-l:  #64748B;
 
   /* Shadows */
   --sh-sm: 0 1px 4px rgba(0,0,0,0.08);
@@ -56,8 +56,8 @@
   --dark-card:    #F8F9FB;
   --dark-hover:   #EEF0F5;
   --dark-border:  #E0E4EC;
-  --gray-1:       #5A6580;
-  --gray-2:       #8A93A8;
+  --gray-1:       #475569;
+  --gray-2:       #64748B;
   --white:        #FFFFFF;
   --off-white:    #F5F5F7;
   --shadow-sm:    0 1px 4px rgba(0,0,0,0.08);
@@ -84,21 +84,21 @@
   --surface2:#1C2333;
   --border:  #2A3348;
   --border2: #374259;
-  --text-h:  #F0F4FF;
-  --text-b:  #C8D0E8;
-  --text-m:  #8090B0;
-  --text-l:  #5A6880;
+  --text-h:  #F8FAFC;
+  --text-b:  #E2E8F0;
+  --text-m:  #94A3B8;
+  --text-l:  #64748B;
 
   /* Compat vars — remapped for dark mode so old admin pages get correct colors */
   --dark:         #161C28;
   --dark-card:    #1C2333;
   --dark-hover:   #222D42;
   --dark-border:  #2A3348;
-  --white:        #F0F4FF;
-  --black:        #F0F4FF;
+  --white:        #F8FAFC;
+  --black:        #090D16;
   --off-white:    #0D1018;
-  --gray-1:       #8090B0;
-  --gray-2:       #5A6880;
+  --gray-1:       #94A3B8;
+  --gray-2:       #64748B;
 }
 
 /* ---- Reset ---- */
@@ -116,7 +116,7 @@ a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
 button { cursor: pointer; border: none; outline: none; font-family: var(--font); background: none; }
-input, select, textarea { font-family: var(--font); outline: none; }
+input, select, textarea { font-family: var(--font); outline: none; color: var(--text-h); }
 
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
@@ -996,7 +996,7 @@ body { padding-top: 72px; }
 }
 .footer-brand p {
   font-size: 12.5px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.85);
   line-height: 1.7;
   margin-top: 12px;
 }
@@ -1017,7 +1017,7 @@ body { padding-top: 72px; }
 }
 .footer-links a {
   font-size: 12.5px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.85);
   transition: var(--ease);
   display: flex;
   align-items: center;

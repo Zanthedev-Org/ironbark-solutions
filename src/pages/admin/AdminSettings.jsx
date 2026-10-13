@@ -21,7 +21,7 @@ export default function AdminSettings() {
 
   const [tickerMessages, setTickerMessages] = useState([
     "⚡ Best Deals on Electronics & Home Appliances — Limited Offers, Shop Now!",
-    "🚚 Enjoy Fast Delivery Across Lagos — Free Shipping on Orders From ₦999,999!"
+    "🚚 Fast Citywide Delivery Across Port Harcourt & Nationwide Dispatch!"
   ]);
 
   const [heroSlides, setHeroSlides] = useState([

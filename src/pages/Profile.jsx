@@ -248,7 +248,7 @@ export default function Profile() {
         
         {/* Sidebar */}
         <aside>
-          <div style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
+          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
             {/* Profile Header */}
             <div style={{ background: 'linear-gradient(135deg, #1a0a00, #2d1200)', padding: '28px 24px', textAlign: 'center' }}>
               <div 
@@ -256,7 +256,7 @@ export default function Profile() {
                 onClick={() => !isUploading && fileInputRef.current?.click()}
                 title="Click to change profile picture"
               >
-                <div style={{ width: '100%', height: '100%', borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', fontWeight: 900, color: 'var(--black)', boxShadow: '0 8px 24px var(--primary-glow)', overflow: 'hidden', border: '2px solid var(--primary)' }}>
+                <div style={{ width: '100%', height: '100%', borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', fontWeight: 900, color: '#fff', boxShadow: '0 8px 24px var(--primary-glow)', overflow: 'hidden', border: '2px solid var(--primary)' }}>
                   {isUploading ? (
                     <Loader2 className="spinner" size={32} />
                   ) : profileImage ? (
@@ -268,7 +268,7 @@ export default function Profile() {
                 
                 {/* Overlay camera icon */}
                 {!isUploading && (
-                  <div style={{ position: 'absolute', bottom: 0, right: 0, background: 'var(--black)', border: '2px solid var(--primary)', borderRadius: '50%', padding: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ position: 'absolute', bottom: 0, right: 0, background: 'var(--surface)', border: '2px solid var(--primary)', borderRadius: '50%', padding: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Camera size={14} color="var(--primary)" />
                   </div>
                 )}
@@ -282,8 +282,8 @@ export default function Profile() {
                 />
               </div>
 
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 800, color: 'var(--white)' }}>{displayName}</h2>
-              <p style={{ fontSize: '13px', color: 'var(--gray-1)', marginTop: '4px' }}>{user.email}</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 800, color: '#fff' }}>{displayName}</h2>
+              <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.75)', marginTop: '4px' }}>{user.email}</p>
               {user.isAdmin && (
                 <span style={{ display: 'inline-block', marginTop: '8px', background: 'rgba(255,61,0,0.15)', border: '1px solid var(--danger)', color: 'var(--danger)', fontSize: '11px', fontWeight: 700, padding: '2px 10px', borderRadius: '20px' }}>
                   Admin
@@ -292,12 +292,12 @@ export default function Profile() {
               <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginTop: '16px' }}>
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ fontSize: '18px', fontWeight: 800, color: 'var(--primary)', fontFamily: 'var(--font-display)' }}>{orders.length}</div>
-                  <div style={{ fontSize: '11px', color: 'var(--gray-1)' }}>Orders</div>
+                  <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)' }}>Orders</div>
                 </div>
-                <div style={{ width: '1px', background: 'var(--dark-border)' }}></div>
+                <div style={{ width: '1px', background: 'rgba(255,255,255,0.15)' }}></div>
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ fontSize: '18px', fontWeight: 800, color: 'var(--primary)', fontFamily: 'var(--font-display)' }}>{wishlist.length}</div>
-                  <div style={{ fontSize: '11px', color: 'var(--gray-1)' }}>Wishlist</div>
+                  <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)' }}>Wishlist</div>
                 </div>
               </div>
             </div>
@@ -305,13 +305,13 @@ export default function Profile() {
             {/* Nav links */}
             <nav style={{ padding: '12px 0' }}>
               {tabs.map(tab => (
-                <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '12px', padding: '14px 24px', background: activeTab === tab.id ? 'rgba(255,94,0,0.1)' : 'transparent', color: activeTab === tab.id ? 'var(--primary)' : 'var(--gray-1)', borderLeft: `3px solid ${activeTab === tab.id ? 'var(--primary)' : 'transparent'}`, transition: 'var(--transition)', fontSize: '14px', fontWeight: 600, cursor: 'pointer', border: 'none' }}>
+                <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '12px', padding: '14px 24px', background: activeTab === tab.id ? 'rgba(255,94,0,0.1)' : 'transparent', color: activeTab === tab.id ? 'var(--primary)' : 'var(--text-b)', borderLeft: `3px solid ${activeTab === tab.id ? 'var(--primary)' : 'transparent'}`, transition: 'var(--transition)', fontSize: '14px', fontWeight: 600, cursor: 'pointer', border: 'none' }}>
                   <tab.icon size={18} />
                   {tab.label}
                   <ChevronRight size={16} style={{ marginLeft: 'auto', opacity: activeTab === tab.id ? 1 : 0.4 }} />
                 </button>
               ))}
-              <div style={{ height: '1px', background: 'var(--dark-border)', margin: '8px 0' }}></div>
+              <div style={{ height: '1px', background: 'var(--border)', margin: '8px 0' }}></div>
               <button onClick={handleLogout} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '12px', padding: '14px 24px', background: 'transparent', color: 'var(--danger)', fontSize: '14px', fontWeight: 600, cursor: 'pointer', border: 'none' }}>
                 <LogOut size={18} /> Sign Out
               </button>
@@ -323,18 +323,18 @@ export default function Profile() {
         <div>
           {activeTab === 'orders' && (
             <div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, marginBottom: '20px' }}>My Orders</h2>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, color: 'var(--text-h)', marginBottom: '20px' }}>My Orders</h2>
               {ordersLoading ? (
                 <div style={{ textAlign: 'center', padding: '60px' }}>
                   <Loader2 className="spinner" size={40} color="var(--primary)" style={{ margin: '0 auto 12px' }} />
-                  <p style={{ color: 'var(--gray-1)' }}>Loading your orders...</p>
+                  <p style={{ color: 'var(--text-m)' }}>Loading your orders...</p>
                 </div>
               ) : orders.length === 0 ? (
-                <div style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-md)', padding: '60px', textAlign: 'center' }}>
+                <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', padding: '60px', textAlign: 'center' }}>
                   <Package size={56} color="var(--gray-2)" style={{ margin: '0 auto 16px' }} />
-                  <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '8px' }}>No orders yet</h3>
-                  <p style={{ color: 'var(--gray-1)', marginBottom: '20px' }}>You haven't placed any orders yet.</p>
-                  <Link to="/shop" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--primary)', color: 'var(--black)', padding: '12px 24px', borderRadius: 'var(--radius-md)', fontWeight: 700 }}><ShoppingCart size={16} /> Start Shopping</Link>
+                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--text-h)', marginBottom: '8px' }}>No orders yet</h3>
+                  <p style={{ color: 'var(--text-m)', marginBottom: '20px' }}>You haven't placed any orders yet.</p>
+                  <Link to="/shop" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--primary)', color: '#fff', padding: '12px 24px', borderRadius: 'var(--radius-md)', fontWeight: 700 }}><ShoppingCart size={16} /> Start Shopping</Link>
                 </div>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -355,31 +355,31 @@ export default function Profile() {
                     const dueInfo = getNextDueDateInfo(order);
                     
                     return (
-                      <div key={order.id} style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-md)', padding: '20px', display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap', transition: 'var(--transition)' }}>
-                        <div style={{ width: '72px', height: '72px', background: 'var(--dark)', borderRadius: 'var(--radius-sm)', flexShrink: 0, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div key={order.id} style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', padding: '20px', display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap', transition: 'var(--transition)' }}>
+                        <div style={{ width: '72px', height: '72px', background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', flexShrink: 0, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           {itemImg ? <img src={itemImg} alt={itemName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={e => { e.target.style.display='none'; }} /> : <Package size={28} color="var(--gray-2)" />}
                         </div>
                         <div style={{ flex: '1 1 200px', minWidth: 0 }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '6px' }}>
-                            <h3 style={{ fontSize: '15px', fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{itemName}{itemCount > 1 ? ` +${itemCount - 1} more` : ''}</h3>
+                            <h3 style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-h)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{itemName}{itemCount > 1 ? ` +${itemCount - 1} more` : ''}</h3>
                             <span style={{ fontSize: '16px', fontWeight: 800, color: 'var(--primary)', fontFamily: 'var(--font-display)', flexShrink: 0 }}>{formatCurrency(order.total || order.totalAmount)}</span>
                           </div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-                            <span style={{ fontSize: '12px', color: 'var(--gray-1)' }}>#{shortId} · {date}</span>
+                            <span style={{ fontSize: '12px', color: 'var(--text-m)' }}>#{shortId} · {date}</span>
                             <span style={{ fontSize: '12px', fontWeight: 700, color: s.color, background: s.bg, padding: '3px 10px', borderRadius: '20px' }}>{order.status || 'Pending'}</span>
                           </div>
                           
                           {order.payMethod === 'installment' && (
-                            <div style={{ marginTop: '12px', background: 'rgba(255,152,0,0.05)', border: '1px solid var(--warning)', borderRadius: 'var(--radius-sm)', padding: '12px' }}>
+                            <div style={{ marginTop: '12px', background: 'var(--surface2)', border: '1px solid var(--warning)', borderRadius: 'var(--radius-sm)', padding: '12px' }}>
                               <div style={{ fontSize: '11px', fontWeight: 800, color: 'var(--warning)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '8px' }}>Installment Plan ({order.installmentPlan?.replace('_', ' ').toUpperCase()})</div>
                               
-                              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '12px', color: 'var(--gray-1)', marginBottom: '12px' }}>
-                                <span>Deposit: <strong style={{ color: 'var(--white)' }}>{formatCurrency(order.depositAmount)}</strong></span>
-                                <span>Recurring: <strong style={{ color: 'var(--white)' }}>{formatCurrency(order.recurringAmount)}</strong></span>
+                              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '12px', color: 'var(--text-m)', marginBottom: '12px' }}>
+                                <span>Deposit: <strong style={{ color: 'var(--text-h)' }}>{formatCurrency(order.depositAmount)}</strong></span>
+                                <span>Recurring: <strong style={{ color: 'var(--text-h)' }}>{formatCurrency(order.recurringAmount)}</strong></span>
                               </div>
                               
-                              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', fontSize: '12px', color: 'var(--gray-1)', marginBottom: '12px', background: 'rgba(255,255,255,0.03)', padding: '10px', borderRadius: '4px' }}>
-                                <div>Total: <br/><strong style={{ color: 'var(--white)' }}>{formatCurrency(order.total || order.totalAmount)}</strong></div>
+                              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', fontSize: '12px', color: 'var(--text-m)', marginBottom: '12px', background: 'var(--surface)', border: '1px solid var(--border)', padding: '10px', borderRadius: '4px' }}>
+                                <div>Total: <br/><strong style={{ color: 'var(--text-h)' }}>{formatCurrency(order.total || order.totalAmount)}</strong></div>
                                 <div>Paid: <br/><strong style={{ color: 'var(--success)' }}>{formatCurrency(paidSoFar)}</strong></div>
                                 <div>Balance: <br/><strong style={{ color: 'var(--danger)' }}>{formatCurrency(remainingBalance)}</strong></div>
                               </div>
@@ -400,23 +400,23 @@ export default function Profile() {
                                   <div style={{ marginBottom: '12px', padding: '10px 12px', background: 'rgba(255,23,68,0.1)', border: '1px solid var(--danger)', borderRadius: '4px' }}>
                                     <div style={{ fontSize: '12px', fontWeight: 800, color: 'var(--danger)', marginBottom: '4px' }}>⚠️ Deposit Payment Rejected</div>
                                     {order.initialPaymentRejectReason && (
-                                      <div style={{ fontSize: '12px', color: 'var(--gray-1)', marginBottom: '8px' }}>Reason: <strong style={{ color: 'var(--white)' }}>{order.initialPaymentRejectReason}</strong></div>
+                                      <div style={{ fontSize: '12px', color: 'var(--text-m)', marginBottom: '8px' }}>Reason: <strong style={{ color: 'var(--text-h)' }}>{order.initialPaymentRejectReason}</strong></div>
                                     )}
                                     <input type="file" id={`reupload-deposit-${order.id}`} style={{ display: 'none' }} accept="image/*" onChange={(e) => handleReuploadInitialDeposit(order.id, e)} />
-                                    <label htmlFor={`reupload-deposit-${order.id}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'var(--danger)', color: 'var(--white)', padding: '6px 12px', borderRadius: '4px', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>
+                                    <label htmlFor={`reupload-deposit-${order.id}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'var(--danger)', color: '#fff', padding: '6px 12px', borderRadius: '4px', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>
                                       <Upload size={13} /> Re-upload Deposit Receipt
                                     </label>
                                   </div>
                                 )}
                                 
-                                <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '4px', padding: '10px' }}>
+                                <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '10px' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                                  <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--white)' }}>Progress</span>
+                                  <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-h)' }}>Progress</span>
                                   <span style={{ fontSize: '12px', color: 'var(--warning)', fontWeight: 700 }}>
                                     {order.installmentsPaid || 0} of {order.installmentsTotal || 1} Payments
                                   </span>
                                 </div>
-                                <div style={{ height: '6px', background: 'var(--dark)', borderRadius: '4px', overflow: 'hidden', marginBottom: '12px' }}>
+                                <div style={{ height: '6px', background: 'var(--surface2)', borderRadius: '4px', overflow: 'hidden', marginBottom: '12px' }}>
                                   <div style={{ width: `${Math.min(100, ((order.installmentsPaid || 0) / (order.installmentsTotal || 1)) * 100)}%`, height: '100%', background: 'var(--warning)' }}></div>
                                 </div>
                                 
@@ -425,36 +425,36 @@ export default function Profile() {
                                     {activePaymentModal !== order.id ? (
                                       <button 
                                         onClick={() => { setActivePaymentModal(order.id); setPaymentAmountInput(order.recurringAmount?.toString()); }}
-                                        style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'var(--warning)', color: 'var(--black)', padding: '6px 12px', borderRadius: '4px', fontSize: '12px', fontWeight: 700, cursor: 'pointer', border: 'none' }}
+                                        style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'var(--warning)', color: '#000', padding: '6px 12px', borderRadius: '4px', fontSize: '12px', fontWeight: 700, cursor: 'pointer', border: 'none' }}
                                       >
                                         <Upload size={14} /> Make Next Payment
                                       </button>
                                     ) : (
-                                      <div style={{ marginTop: '12px', padding: '14px', background: 'var(--dark)', border: '1px solid var(--dark-border)', borderRadius: '6px' }}>
+                                      <div style={{ marginTop: '12px', padding: '14px', background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: '6px' }}>
                                         {/* Bank Account Details */}
                                         <div style={{ background: 'rgba(255,152,0,0.07)', border: '1px solid var(--warning)', borderRadius: '4px', padding: '12px', marginBottom: '12px' }}>
                                           <div style={{ fontSize: '11px', fontWeight: 800, color: 'var(--warning)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px' }}>Transfer to this account first</div>
                                           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                                             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-                                              <span style={{ color: 'var(--gray-1)' }}>Bank Name</span>
-                                              <span style={{ fontWeight: 700, color: 'var(--white)' }}>Sterling Bank</span>
+                                              <span style={{ color: 'var(--text-m)' }}>Bank Name</span>
+                                              <span style={{ fontWeight: 700, color: 'var(--text-h)' }}>Sterling Bank</span>
                                             </div>
                                             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-                                              <span style={{ color: 'var(--gray-1)' }}>Account Name</span>
-                                              <span style={{ fontWeight: 700, color: 'var(--white)' }}>Smart Choice Global Resources Ltd</span>
+                                              <span style={{ color: 'var(--text-m)' }}>Account Name</span>
+                                              <span style={{ fontWeight: 700, color: 'var(--text-h)' }}>Smart Choice Global Resources Ltd</span>
                                             </div>
                                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '12px' }}>
-                                              <span style={{ color: 'var(--gray-1)' }}>Account Number</span>
+                                              <span style={{ color: 'var(--text-m)' }}>Account Number</span>
                                               <span style={{ fontWeight: 900, fontSize: '15px', color: 'var(--warning)', letterSpacing: '1.5px', fontFamily: 'monospace' }}>8682287868</span>
                                             </div>
-                                            <div style={{ marginTop: '4px', fontSize: '11px', color: 'var(--gray-1)', textAlign: 'center', borderTop: '1px solid var(--dark-border)', paddingTop: '6px' }}>
-                                              Transfer exactly <strong style={{ color: 'var(--white)' }}>{formatCurrency(order.recurringAmount)}</strong> or your agreed amount, then upload your receipt below.
+                                            <div style={{ marginTop: '4px', fontSize: '11px', color: 'var(--text-m)', textAlign: 'center', borderTop: '1px solid var(--border)', paddingTop: '6px' }}>
+                                              Transfer exactly <strong style={{ color: 'var(--text-h)' }}>{formatCurrency(order.recurringAmount)}</strong> or your agreed amount, then upload your receipt below.
                                             </div>
                                           </div>
                                         </div>
                                         
-                                        <div style={{ fontSize: '12px', fontWeight: 700, marginBottom: '6px', color: 'var(--white)' }}>Enter Amount Paid (₦)</div>
-                                        <input type="number" value={paymentAmountInput} onChange={e => setPaymentAmountInput(e.target.value)} placeholder="e.g. 30000" style={{ width: '100%', padding: '8px', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--dark-border)', color: 'var(--white)', borderRadius: '4px', marginBottom: '10px', boxSizing: 'border-box' }} />
+                                        <div style={{ fontSize: '12px', fontWeight: 700, marginBottom: '6px', color: 'var(--text-h)' }}>Enter Amount Paid (₦)</div>
+                                        <input type="number" value={paymentAmountInput} onChange={e => setPaymentAmountInput(e.target.value)} placeholder="e.g. 30000" style={{ width: '100%', padding: '8px', background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text-h)', borderRadius: '4px', marginBottom: '10px', boxSizing: 'border-box' }} />
                                         
                                         <input 
                                           type="file" 
@@ -464,10 +464,10 @@ export default function Profile() {
                                           onChange={(e) => { handleInstallmentPayment(order.id, paymentAmountInput, e); setActivePaymentModal(null); }}
                                         />
                                         <div style={{ display: 'flex', gap: '8px' }}>
-                                          <label htmlFor={`custom-upload-${order.id}`} style={{ flex: 1, textAlign: 'center', background: 'var(--warning)', color: 'var(--black)', padding: '9px', borderRadius: '4px', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>
+                                          <label htmlFor={`custom-upload-${order.id}`} style={{ flex: 1, textAlign: 'center', background: 'var(--primary)', color: '#fff', padding: '9px', borderRadius: '4px', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>
                                             <Upload size={13} style={{ display: 'inline', marginRight: '5px', verticalAlign: 'middle' }} /> Upload Receipt
                                           </label>
-                                          <button onClick={() => setActivePaymentModal(null)} style={{ padding: '9px 12px', background: 'var(--dark-border)', color: 'var(--white)', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 600 }}>Cancel</button>
+                                          <button onClick={() => setActivePaymentModal(null)} style={{ padding: '9px 12px', background: 'var(--surface)', color: 'var(--text-h)', border: '1px solid var(--border)', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 600 }}>Cancel</button>
                                         </div>
                                       </div>
                                     )}
@@ -477,8 +477,8 @@ export default function Profile() {
                                 {order.installmentReceipts?.length > 0 && (
                                   <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                                     {order.installmentReceipts.map((rec, rIdx) => (
-                                      <div key={rIdx} style={{ borderTop: '1px solid var(--dark-border)', paddingTop: '8px' }}>
-                                        <div style={{ fontSize: '11px', color: 'var(--gray-1)', display: 'flex', justifyContent: 'space-between', marginBottom: rec.status === 'Rejected' ? '6px' : '0' }}>
+                                      <div key={rIdx} style={{ borderTop: '1px solid var(--border)', paddingTop: '8px' }}>
+                                        <div style={{ fontSize: '11px', color: 'var(--text-m)', display: 'flex', justifyContent: 'space-between', marginBottom: rec.status === 'Rejected' ? '6px' : '0' }}>
                                           <span>{rec.amount ? formatCurrency(rec.amount) : 'Payment'} on {new Date(rec.uploadedAt).toLocaleDateString()}</span>
                                           <span style={{ color: rec.status === 'Approved' ? 'var(--success)' : rec.status === 'Rejected' ? 'var(--danger)' : 'var(--warning)', fontWeight: 600 }}>{rec.status}</span>
                                         </div>
@@ -487,14 +487,14 @@ export default function Profile() {
                                             {rec.rejectReason && (
                                               <div style={{ fontSize: '11px', color: 'var(--danger)', marginBottom: '6px' }}>Reason: <strong>{rec.rejectReason}</strong></div>
                                             )}
-                                            <input type="number" id={`reupload-amt-${order.id}-${rIdx}`} placeholder="Enter amount paid (₦)" defaultValue={rec.amount} style={{ width: '100%', padding: '6px', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--dark-border)', color: 'var(--white)', borderRadius: '4px', marginBottom: '6px', boxSizing: 'border-box', fontSize: '12px' }} />
+                                            <input type="number" id={`reupload-amt-${order.id}-${rIdx}`} placeholder="Enter amount paid (₦)" defaultValue={rec.amount} style={{ width: '100%', padding: '6px', background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text-h)', borderRadius: '4px', marginBottom: '6px', boxSizing: 'border-box', fontSize: '12px' }} />
                                             <input type="file" id={`reupload-rec-${order.id}-${rIdx}`} style={{ display: 'none' }} accept="image/*"
                                               onChange={(e) => {
                                                 const amtInput = document.getElementById(`reupload-amt-${order.id}-${rIdx}`);
                                                 handleReuploadRecurringReceipt(order.id, rIdx, amtInput?.value || rec.amount, e);
                                               }}
                                             />
-                                            <label htmlFor={`reupload-rec-${order.id}-${rIdx}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', background: 'var(--danger)', color: 'var(--white)', padding: '5px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: 700, cursor: 'pointer' }}>
+                                            <label htmlFor={`reupload-rec-${order.id}-${rIdx}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', background: 'var(--danger)', color: '#fff', padding: '5px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: 700, cursor: 'pointer' }}>
                                               <Upload size={11} /> Re-upload Receipt
                                             </label>
                                           </div>
@@ -508,8 +508,8 @@ export default function Profile() {
                           )}
                           
                           {order.payMethod && order.payMethod !== 'installment' && (
-                            <div style={{ marginTop: '8px', fontSize: '12px', color: 'var(--gray-1)' }}>
-                              Payment Method: <strong style={{ color: 'var(--white)' }}>{order.payMethod.replace('_', ' ').toUpperCase()}</strong>
+                            <div style={{ marginTop: '8px', fontSize: '12px', color: 'var(--text-m)' }}>
+                              Payment Method: <strong style={{ color: 'var(--text-h)' }}>{order.payMethod.replace('_', ' ').toUpperCase()}</strong>
                             </div>
                           )}
                         </div>
@@ -523,12 +523,12 @@ export default function Profile() {
 
           {activeTab === 'wishlist' && (
             <div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, marginBottom: '20px' }}>Wishlist</h2>
-              <div style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-md)', padding: '60px', textAlign: 'center' }}>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, color: 'var(--text-h)', marginBottom: '20px' }}>Wishlist</h2>
+              <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', padding: '60px', textAlign: 'center' }}>
                 <Heart size={64} color="var(--primary)" strokeWidth={1} style={{ margin: '0 auto 16px' }} />
-                <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '8px' }}>Your Wishlist is Empty</h3>
-                <p style={{ color: 'var(--gray-1)', marginBottom: '20px' }}>Save your favourite items to buy later.</p>
-                <Link to="/shop" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--primary)', color: 'var(--black)', padding: '12px 24px', borderRadius: 'var(--radius-md)', fontWeight: 700 }}><ShoppingCart size={16} /> Browse Products</Link>
+                <h3 style={{ fontSize: '20px', fontWeight: 700, color: 'var(--text-h)', marginBottom: '8px' }}>Your Wishlist is Empty</h3>
+                <p style={{ color: 'var(--text-m)', marginBottom: '20px' }}>Save your favourite items to buy later.</p>
+                <Link to="/shop" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--primary)', color: '#fff', padding: '12px 24px', borderRadius: 'var(--radius-md)', fontWeight: 700 }}><ShoppingCart size={16} /> Browse Products</Link>
               </div>
             </div>
           )}
@@ -536,19 +536,19 @@ export default function Profile() {
           {activeTab === 'addresses' && (
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800 }}>Delivery Addresses</h2>
-                <button style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'var(--primary)', color: 'var(--black)', padding: '10px 20px', borderRadius: 'var(--radius-md)', fontWeight: 700, fontSize: '13px', cursor: 'pointer', border: 'none' }}>+ Add Address</button>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, color: 'var(--text-h)' }}>Delivery Addresses</h2>
+                <button style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'var(--primary)', color: '#fff', padding: '10px 20px', borderRadius: 'var(--radius-md)', fontWeight: 700, fontSize: '13px', cursor: 'pointer', border: 'none' }}>+ Add Address</button>
               </div>
-              <div style={{ background: 'var(--dark-card)', border: '1px solid var(--primary)', borderRadius: 'var(--radius-md)', padding: '24px' }}>
+              <div style={{ background: 'var(--surface)', border: '1px solid var(--primary)', borderRadius: 'var(--radius-md)', padding: '24px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <div style={{ display: 'flex', gap: '12px' }}>
                     <MapPin size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
                     <div>
-                      <div style={{ fontWeight: 700, marginBottom: '4px' }}>Home <span style={{ background: 'rgba(255,94,0,0.1)', color: 'var(--primary)', fontSize: '11px', fontWeight: 700, padding: '2px 8px', borderRadius: '20px', marginLeft: '8px' }}>Default</span></div>
-                      <div style={{ fontSize: '14px', color: 'var(--gray-1)', lineHeight: 1.7 }}>5 Electronics Way, Ikeja<br />Lagos State, Nigeria</div>
+                      <div style={{ fontWeight: 700, color: 'var(--text-h)', marginBottom: '4px' }}>Home <span style={{ background: 'rgba(255,94,0,0.1)', color: 'var(--primary)', fontSize: '11px', fontWeight: 700, padding: '2px 8px', borderRadius: '20px', marginLeft: '8px' }}>Default</span></div>
+                      <div style={{ fontSize: '14px', color: 'var(--text-m)', lineHeight: 1.7 }}>71 NTA Road Mgbuoba<br />Port Harcourt, Rivers State</div>
                     </div>
                   </div>
-                  <button style={{ background: 'transparent', border: '1px solid var(--dark-border)', color: 'var(--gray-1)', padding: '6px 14px', borderRadius: 'var(--radius-sm)', fontSize: '13px', cursor: 'pointer' }}>Edit</button>
+                  <button style={{ background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--text-h)', padding: '6px 14px', borderRadius: 'var(--radius-sm)', fontSize: '13px', cursor: 'pointer' }}>Edit</button>
                 </div>
               </div>
             </div>
@@ -556,8 +556,8 @@ export default function Profile() {
 
           {activeTab === 'settings' && (
             <div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, marginBottom: '20px' }}>Account Settings</h2>
-              <form onSubmit={handleSettingsSave} style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-md)', padding: '28px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, color: 'var(--text-h)', marginBottom: '20px' }}>Account Settings</h2>
+              <form onSubmit={handleSettingsSave} style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', padding: '28px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 {settingsSaved && (
                   <div style={{ background: 'rgba(0,230,118,0.1)', border: '1px solid var(--success)', color: 'var(--success)', padding: '12px 16px', borderRadius: 'var(--radius-sm)', fontSize: '13px', fontWeight: 600 }}>
                     ✓ Changes saved successfully!
@@ -565,27 +565,27 @@ export default function Profile() {
                 )}
                 <div className="responsive-grid-2" style={{ gap: '16px' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--gray-1)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>First Name</label>
-                    <input type="text" value={settingsForm.firstName} onChange={e => setSettingsForm(p => ({ ...p, firstName: e.target.value }))} placeholder="First name" style={{ width: '100%', background: 'var(--dark)', border: '1.5px solid var(--dark-border)', color: 'var(--white)', padding: '12px 16px', borderRadius: 'var(--radius-sm)', fontSize: '14px' }} onFocus={e => e.target.style.borderColor='var(--primary)'} onBlur={e => e.target.style.borderColor='var(--dark-border)'} />
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-m)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>First Name</label>
+                    <input type="text" value={settingsForm.firstName} onChange={e => setSettingsForm(p => ({ ...p, firstName: e.target.value }))} placeholder="First name" style={{ width: '100%', background: 'var(--surface)', border: '1.5px solid var(--border)', color: 'var(--text-h)', padding: '12px 16px', borderRadius: 'var(--radius-sm)', fontSize: '14px' }} onFocus={e => e.target.style.borderColor='var(--primary)'} onBlur={e => e.target.style.borderColor='var(--border)'} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--gray-1)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>Last Name</label>
-                    <input type="text" value={settingsForm.lastName} onChange={e => setSettingsForm(p => ({ ...p, lastName: e.target.value }))} placeholder="Last name" style={{ width: '100%', background: 'var(--dark)', border: '1.5px solid var(--dark-border)', color: 'var(--white)', padding: '12px 16px', borderRadius: 'var(--radius-sm)', fontSize: '14px' }} onFocus={e => e.target.style.borderColor='var(--primary)'} onBlur={e => e.target.style.borderColor='var(--dark-border)'} />
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-m)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>Last Name</label>
+                    <input type="text" value={settingsForm.lastName} onChange={e => setSettingsForm(p => ({ ...p, lastName: e.target.value }))} placeholder="Last name" style={{ width: '100%', background: 'var(--surface)', border: '1.5px solid var(--border)', color: 'var(--text-h)', padding: '12px 16px', borderRadius: 'var(--radius-sm)', fontSize: '14px' }} onFocus={e => e.target.style.borderColor='var(--primary)'} onBlur={e => e.target.style.borderColor='var(--border)'} />
                   </div>
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--gray-1)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>Email Address</label>
-                  <input type="email" value={settingsForm.email} readOnly style={{ width: '100%', background: 'rgba(255,255,255,0.04)', border: '1.5px solid var(--dark-border)', color: 'var(--gray-1)', padding: '12px 16px', borderRadius: 'var(--radius-sm)', fontSize: '14px', cursor: 'not-allowed' }} title="Email cannot be changed here" />
-                  <p style={{ fontSize: '11px', color: 'var(--gray-2)', marginTop: '4px' }}>Email address is managed by Firebase Auth and cannot be changed here.</p>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-m)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>Email Address</label>
+                  <input type="email" value={settingsForm.email} readOnly style={{ width: '100%', background: 'var(--surface2)', border: '1.5px solid var(--border)', color: 'var(--text-m)', padding: '12px 16px', borderRadius: 'var(--radius-sm)', fontSize: '14px', cursor: 'not-allowed' }} title="Email cannot be changed here" />
+                  <p style={{ fontSize: '11px', color: 'var(--text-l)', marginTop: '4px' }}>Email address is managed by Firebase Auth and cannot be changed here.</p>
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--gray-1)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>Phone Number</label>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-m)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px' }}>Phone Number</label>
                   <div style={{ display: 'flex' }}>
                     <span style={{ display: 'flex', alignItems: 'center', padding: '0 14px', background: 'rgba(255,94,0,0.1)', border: '1.5px solid var(--primary)', borderRight: 'none', borderRadius: 'var(--radius-sm) 0 0 var(--radius-sm)', fontSize: '14px', fontWeight: 700, color: 'var(--primary)', whiteSpace: 'nowrap' }}>+234</span>
-                    <input type="tel" value={settingsForm.phone} onChange={e => setSettingsForm(p => ({ ...p, phone: e.target.value.replace(/\D/g, '') }))} placeholder="800 000 0000" maxLength="11" style={{ width: '100%', background: 'var(--dark)', border: '1.5px solid var(--dark-border)', color: 'var(--white)', padding: '12px 16px', borderRadius: '0 var(--radius-sm) var(--radius-sm) 0', fontSize: '14px' }} onFocus={e => e.target.style.borderColor='var(--primary)'} onBlur={e => e.target.style.borderColor='var(--dark-border)'} />
+                    <input type="tel" value={settingsForm.phone} onChange={e => setSettingsForm(p => ({ ...p, phone: e.target.value.replace(/\D/g, '') }))} placeholder="800 000 0000" maxLength="11" style={{ width: '100%', background: 'var(--surface)', border: '1.5px solid var(--border)', color: 'var(--text-h)', padding: '12px 16px', borderRadius: '0 var(--radius-sm) var(--radius-sm) 0', fontSize: '14px' }} onFocus={e => e.target.style.borderColor='var(--primary)'} onBlur={e => e.target.style.borderColor='var(--border)'} />
                   </div>
                 </div>
-                <button type="submit" disabled={isSavingSettings} style={{ alignSelf: 'flex-start', background: 'var(--primary)', color: 'var(--black)', padding: '12px 28px', borderRadius: 'var(--radius-md)', fontWeight: 700, fontSize: '14px', cursor: isSavingSettings ? 'not-allowed' : 'pointer', border: 'none', display: 'flex', alignItems: 'center', gap: '8px', opacity: isSavingSettings ? 0.7 : 1 }}>
+                <button type="submit" disabled={isSavingSettings} style={{ alignSelf: 'flex-start', background: 'var(--primary)', color: '#fff', padding: '12px 28px', borderRadius: 'var(--radius-md)', fontWeight: 700, fontSize: '14px', cursor: isSavingSettings ? 'not-allowed' : 'pointer', border: 'none', display: 'flex', alignItems: 'center', gap: '8px', opacity: isSavingSettings ? 0.7 : 1 }}>
                   {isSavingSettings ? <><Loader2 className="spinner" size={16} /> Saving...</> : 'Save Changes'}
                 </button>
               </form>
@@ -594,19 +594,19 @@ export default function Profile() {
 
           {activeTab === 'notifications' && (
             <div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, marginBottom: '20px' }}>Notifications</h2>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, color: 'var(--text-h)', marginBottom: '20px' }}>Notifications</h2>
               {[
                 { icon: ShoppingCart, title: 'Your order #TEP-002 is in transit', time: '2 hours ago', read: false },
                 { icon: Star, title: 'Rate your recent purchase: Samsung Galaxy S24 Ultra', time: '1 day ago', read: false },
                 { icon: ShieldCheck, title: 'Your email address has been verified', time: '4 days ago', read: true },
               ].map((notif, i) => (
-                <div key={i} style={{ background: notif.read ? 'var(--dark-card)' : 'rgba(255,94,0,0.05)', border: `1px solid ${notif.read ? 'var(--dark-border)' : 'rgba(255,94,0,0.2)'}`, borderRadius: 'var(--radius-md)', padding: '16px 20px', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <div key={i} style={{ background: notif.read ? 'var(--surface)' : 'rgba(255,94,0,0.05)', border: `1px solid ${notif.read ? 'var(--border)' : 'rgba(255,94,0,0.2)'}`, borderRadius: 'var(--radius-md)', padding: '16px 20px', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '16px' }}>
                   <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(255,94,0,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <notif.icon size={20} color="var(--primary)" />
                   </div>
                   <div style={{ flex: 1 }}>
-                    <p style={{ fontSize: '14px', fontWeight: notif.read ? 400 : 600, color: notif.read ? 'var(--gray-1)' : 'var(--white)', marginBottom: '4px' }}>{notif.title}</p>
-                    <span style={{ fontSize: '12px', color: 'var(--gray-2)' }}>{notif.time}</span>
+                    <p style={{ fontSize: '14px', fontWeight: notif.read ? 400 : 600, color: notif.read ? 'var(--text-m)' : 'var(--text-h)', marginBottom: '4px' }}>{notif.title}</p>
+                    <span style={{ fontSize: '12px', color: 'var(--text-l)' }}>{notif.time}</span>
                   </div>
                   {!notif.read && <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary)', flexShrink: 0 }}></div>}
                 </div>

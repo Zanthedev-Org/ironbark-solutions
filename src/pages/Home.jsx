@@ -236,14 +236,20 @@ export default function Home() {
       setIsLoading(true);
       try {
         const { getProducts } = await import('../utils/productService');
-        const db = await getProducts();
-        if (db && db.length > 0) {
+        const products = await getProducts();
+        if (products && products.length > 0) {
+          // Sort by newest first (createdAt desc) for newArrivals
+          const sorted = [...products].sort((a, b) => {
+            const ta = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+            const tb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+            return tb - ta;
+          });
           setData({
-            flashSale: db.slice(0, 10),
-            bestSellers: db.slice(0, 8),
-            newArrivals: db.slice(0, 12),
-            featured: db.slice(0, 12),
-            all: db
+            flashSale: products.filter(p => p.oldPrice || p.originalPrice).slice(0, 10).concat(products.slice(0, 10)).slice(0, 10),
+            bestSellers: products.slice(0, 8),
+            newArrivals: sorted.slice(0, 12),
+            featured: products.slice(0, 12),
+            all: products
           });
         }
       } catch (err) { console.error(err); }
@@ -575,9 +581,19 @@ export default function Home() {
         {/* ════════════════════════════════════════
             DYNAMIC CATEGORY SECTIONS
             ════════════════════════════════════════ */}
-        {(isLoading || data.all.length > 0) && PROMO_SECTIONS.map((sec, idx) => {
-          const offset = isLoading ? 0 : (idx % data.all.length);
-          const products = isLoading ? [] : [...data.all.slice(offset), ...data.all.slice(0, offset)];
+        {!isLoading && data.all.length > 0 && PROMO_SECTIONS.map((sec) => {
+          // Filter products that belong to this department/category
+          const sectionProducts = data.all.filter(p => {
+            const dept = (p.department || '').toLowerCase();
+            const cat = (p.category || '').toLowerCase();
+            const subcat = (p.subcategory || '').toLowerCase();
+            const title = sec.title.toLowerCase();
+            return dept.includes(title) || title.includes(dept) ||
+                   cat.includes(title) || title.includes(cat) ||
+                   (subcat && (subcat.includes(title) || title.includes(subcat)));
+          });
+          // Skip section if no products match
+          if (sectionProducts.length < 1) return null;
           return (
             <section key={sec.title} className="sc-section" aria-label={sec.title}>
               <div className="sc-section__head">
@@ -587,7 +603,7 @@ export default function Home() {
                 </div>
                 <Link to={`/shop?dept=${encodeURIComponent(sec.title)}`} className="sc-section__more">View All <ArrowRight size={14} /></Link>
               </div>
-              <ScrollableProductSlider products={products} isLoading={isLoading} />
+              <ScrollableProductSlider products={sectionProducts} isLoading={false} />
             </section>
           );
         })}

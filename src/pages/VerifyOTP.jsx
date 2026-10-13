@@ -128,7 +128,7 @@ export default function VerifyOTP() {
                 <ShieldCheck size={64} color="var(--success)" strokeWidth={1.5} style={{ margin: '0 auto 16px' }} />
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 800, color: 'var(--success)', marginBottom: '8px' }}>Email Verified!</h3>
                 <p style={{ color: 'var(--gray-1)', marginBottom: '24px' }}>Your account is ready. Welcome to Smart Choice Electronics!</p>
-                <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--primary)', color: 'var(--black)', padding: '12px 28px', borderRadius: 'var(--radius-md)', fontWeight: 800 }}>Start Shopping <ArrowRight size={16} /></Link>
+                <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--primary)', color: '#fff', padding: '12px 28px', borderRadius: 'var(--radius-md)', fontWeight: 800 }}>Start Shopping <ArrowRight size={16} /></Link>
               </div>
             ) : (
               <form onSubmit={handleVerify} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -147,15 +147,15 @@ export default function VerifyOTP() {
                       onKeyDown={e => handleKeyDown(e, i)}
                       style={{
                         width: '52px', height: '60px', textAlign: 'center', fontSize: '24px', fontWeight: 800,
-                        fontFamily: 'var(--font-display)', background: 'var(--dark)', border: `2px solid ${digit ? 'var(--primary)' : 'var(--dark-border)'}`,
-                        color: 'var(--white)', borderRadius: 'var(--radius-sm)', transition: 'var(--transition)',
+                        fontFamily: 'var(--font-display)', background: 'var(--surface)', border: `2px solid ${digit ? 'var(--primary)' : 'var(--border)'}`,
+                        color: 'var(--text-h)', borderRadius: 'var(--radius-sm)', transition: 'var(--transition)',
                         boxShadow: digit ? '0 0 12px var(--primary-glow)' : 'none'
                       }}
                     />
                   ))}
                 </div>
 
-                <button type="submit" disabled={loading} style={{ width: '100%', background: 'var(--primary)', color: 'var(--black)', padding: '14px', borderRadius: 'var(--radius-md)', fontWeight: 800, fontSize: '15px', fontFamily: 'var(--font-display)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', opacity: loading ? 0.7 : 1, boxShadow: '0 8px 24px var(--primary-glow)', transition: 'var(--transition)' }}>
+                <button type="submit" disabled={loading} style={{ width: '100%', background: 'var(--primary)', color: '#fff', padding: '14px', borderRadius: 'var(--radius-md)', fontWeight: 800, fontSize: '15px', fontFamily: 'var(--font-display)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', opacity: loading ? 0.7 : 1, boxShadow: '0 8px 24px var(--primary-glow)', transition: 'var(--transition)', border: 'none', cursor: 'pointer' }}>
                   {loading ? <><Loader2 className="spinner" size={16} /> Verifying & Creating Account...</> : <><ShieldCheck size={16} /> Verify Email</>}
                 </button>
 
