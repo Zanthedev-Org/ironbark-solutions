@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PhoneCall, Mail, MapPin, CreditCard, Building2 } from 'lucide-react';
+import { PhoneCall, Mail, MapPin, Building2 } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaWhatsapp, FaYoutube, FaTiktok } from 'react-icons/fa';
 
 export default function Footer() {
@@ -140,10 +140,10 @@ export default function Footer() {
             © 2026 <span>Smart Choice Electronics Group</span>. All rights reserved. Port Harcourt, Nigeria.
           </div>
           <div style={{ display:'flex', gap:6, flexWrap:'wrap', alignItems:'center' }}>
-            <span className="payment-badge" style={{ display:'flex', alignItems:'center', gap:4 }}><CreditCard size={11} /> Visa</span>
-            <span className="payment-badge" style={{ display:'flex', alignItems:'center', gap:4 }}><CreditCard size={11} /> Mastercard</span>
-            <span className="payment-badge" style={{ display:'flex', alignItems:'center', gap:4 }}><CreditCard size={11} /> Paystack</span>
-            <span className="payment-badge" style={{ color:'#F0B800', borderColor:'rgba(240,184,0,0.3)', background:'rgba(240,184,0,0.08)' }}>Moniepoint</span>
+            <span className="payment-badge" style={{ display:'flex', alignItems:'center', gap:4 }}><Building2 size={11} /> Bank Transfer</span>
+            <span className="payment-badge" style={{ color:'#F0B800', borderColor:'rgba(240,184,0,0.3)', background:'rgba(240,184,0,0.08)' }}>Sterling Bank</span>
+            <span className="payment-badge">In-Store POS</span>
+            <span className="payment-badge">Installments</span>
           </div>
         </div>
       </div>

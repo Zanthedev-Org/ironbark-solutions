@@ -25,10 +25,10 @@ const faqs = [
   },
   {
     cat: 'Payment',
-    icon: '💳',
+    icon: '🏦',
     items: [
-      { q: 'What payment methods do you accept?', a: 'We accept bank transfers, POS payments, Paystack (card/debit), and cash at our stores. Bank details: 8682287868 — Smart Choice Global Resources Ltd — Sterling Bank.' },
-      { q: 'Is it safe to pay online?', a: 'Yes. Payments are processed via Paystack, a PCI-DSS Level 1 compliant gateway trusted by thousands of Nigerian businesses. Your card details are never stored on our servers.' },
+      { q: 'What payment methods do you accept?', a: 'We accept direct bank transfers to our corporate Sterling Bank account, POS and cash payments at our Port Harcourt showroom stores, and structured installment plans. Bank details: 8682287868 — Smart Choice Global Resources Ltd — Sterling Bank.' },
+      { q: 'How do I pay for my order?', a: 'Orders are completed safely via direct bank transfer to our official Sterling Bank corporate account (upload your receipt proof during checkout) or via POS and cash in person at our Port Harcourt showroom stores.' },
       { q: 'Can I pay on delivery (POD)?', a: 'Pay on delivery is available for select orders within Port Harcourt at the team\'s discretion. Contact us via WhatsApp to discuss this for your specific order.' },
     ],
   },

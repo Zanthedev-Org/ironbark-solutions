@@ -1,54 +1,55 @@
 import React from 'react';
-import { CreditCard, Smartphone, Building2, CheckCircle, ShieldCheck, Lock } from 'lucide-react';
+import { Smartphone, Building2, CheckCircle, ShieldCheck, Lock, Truck } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const methods = [
   {
-    icon: <CreditCard size={26} />,
-    color: 'var(--blue-lt)',
-    bg: 'rgba(34,87,197,0.08)',
-    title: 'Card Payment via Paystack',
-    badges: ['Visa', 'Mastercard', 'Verve'],
-    highlight: 'Instant confirmation',
-    highlightColor: '#0A7A32',
-    desc: 'Pay securely online using your debit or credit card via Paystack — Nigeria\'s most trusted payment gateway. Your card details are encrypted and never stored on our servers.',
-    steps: [
-      'Select your items and proceed to checkout',
-      'Choose "Card Payment" as your method',
-      'Enter your details on the Paystack secure page',
-      'Complete OTP verification from your bank',
-      'Order confirmed instantly',
-    ],
-  },
-  {
     icon: <Building2 size={26} />,
     color: '#8B6914',
     bg: 'rgba(240,184,0,0.08)',
-    title: 'Bank Transfer',
-    badges: ['Sterling Bank'],
-    highlight: '15–30 mins to confirm',
+    title: 'Direct Bank Transfer',
+    badges: ['Sterling Bank', 'Corporate Account'],
+    highlight: 'Official Account',
     highlightColor: '#8B6914',
-    desc: 'Transfer directly to our Sterling Bank account. Send us proof of payment via WhatsApp for quick confirmation and order processing.',
+    desc: 'Transfer directly to our corporate Sterling Bank account. Upload your receipt proof during checkout or send via WhatsApp for quick verification and order dispatch.',
     steps: [
-      'Get your total at checkout',
+      'Select your items and proceed to checkout',
       'Transfer to: 8682287868 — Smart Choice Global Resources Ltd — Sterling Bank',
-      'Send proof of payment to our WhatsApp: +234 816 592 9400',
-      'We confirm payment and process your order',
+      'Upload your payment receipt screenshot on the checkout page',
+      'Or send proof of payment to WhatsApp: +234 816 592 9400',
+      'Our team verifies payment and dispatches your order',
     ],
   },
   {
     icon: <Smartphone size={26} />,
     color: '#0A7A32',
     bg: 'rgba(10,122,50,0.08)',
-    title: 'POS / In-Store / Mobile Transfer',
-    badges: ['Moniepoint', 'OPay', 'Kuda', 'All Banks'],
+    title: 'POS / In-Store Payment',
+    badges: ['Moniepoint POS', 'OPay', 'Cash', 'All Banks'],
     highlight: 'Available in-store',
     highlightColor: '#0A7A32',
-    desc: 'Pay via POS terminal at any of our stores, or use mobile banking transfer from any Nigerian bank to our account. Quick and simple.',
+    desc: 'Pay via POS terminal or cash in person at any of our two stores in Port Harcourt. Inspect your items and complete payment with our sales team.',
     steps: [
-      'Visit either of our two stores in Port Harcourt',
-      'Or call to arrange a transfer to our account',
-      'Payment confirmed immediately by our staff',
+      'Visit either of our two showroom stores in Port Harcourt',
+      'Inspect your preferred electronics or home appliances',
+      'Pay via our in-store POS terminal using your debit card or cash',
+      'Collect your items immediately or schedule delivery',
+    ],
+  },
+  {
+    icon: <Truck size={26} />,
+    color: 'var(--blue-lt)',
+    bg: 'rgba(34,87,197,0.08)',
+    title: 'Flexible Installment Plan',
+    badges: ['Weekly Plans', 'Monthly Plans', '30% Deposit'],
+    highlight: 'Budget Friendly',
+    highlightColor: 'var(--blue-lt)',
+    desc: 'Pay for larger electronics and appliances in convenient weekly or monthly installments. Start with a 30% down payment via bank transfer, and spread the balance over agreed terms.',
+    steps: [
+      'Choose "Installment Payment" at checkout',
+      'Select your preferred duration (2–12 weeks or 2–6 months)',
+      'Transfer the 30% upfront deposit to our bank account and upload receipt',
+      'Pay recurring balance according to your payment schedule',
     ],
   },
 ];
@@ -58,7 +59,7 @@ export default function PaymentMethods() {
     <>
       <SEO
         title="Payment Methods – Smart Choice Electronics | Port Harcourt"
-        description="Discover all accepted payment methods at Smart Choice Electronics: card payment via Paystack, bank transfer, POS, and mobile transfer."
+        description="Accepted payment methods at Smart Choice Electronics: direct bank transfer to Sterling Bank, in-store POS, and structured installment plans. Port Harcourt, Nigeria."
         url="/payment-methods"
       />
 
@@ -77,14 +78,14 @@ export default function PaymentMethods() {
           border: '1px solid rgba(255,255,255,0.3)', borderRadius: 30,
           padding: '6px 18px', marginBottom: 18,
         }}>
-          <CreditCard size={13} color="#fff" />
-          <span style={{ fontSize: 11, fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Secure Payments</span>
+          <Building2 size={13} color="#fff" />
+          <span style={{ fontSize: 11, fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Direct & Safe Payments</span>
         </div>
         <h1 style={{ fontFamily: 'var(--font2)', fontSize: 'clamp(28px,5vw,46px)', fontWeight: 900, color: '#fff', margin: '0 0 12px', textShadow: '0 2px 16px rgba(0,0,0,0.25)' }}>
           Payment <span style={{ color: '#F0B800' }}>Methods</span>
         </h1>
         <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: 15, maxWidth: 480, margin: '0 auto' }}>
-          Multiple convenient and secure payment options for a smooth shopping experience.
+          Multiple convenient and verified payment options for a smooth shopping experience.
         </p>
       </div>
 
@@ -93,9 +94,9 @@ export default function PaymentMethods() {
         {/* Trust badges */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: 14, flexWrap: 'wrap', marginBottom: 36 }}>
           {[
-            { icon: <Lock size={13} />, text: 'SSL Encrypted', color: '#0A7A32', bg: 'rgba(10,122,50,0.08)', border: 'rgba(10,122,50,0.2)' },
-            { icon: <ShieldCheck size={13} />, text: 'PCI-DSS Compliant', color: 'var(--blue-lt)', bg: 'rgba(34,87,197,0.08)', border: 'rgba(34,87,197,0.2)' },
-            { icon: <CheckCircle size={13} />, text: '100% Secure', color: '#8B6914', bg: 'rgba(240,184,0,0.08)', border: 'rgba(240,184,0,0.25)' },
+            { icon: <Building2 size={13} />, text: 'Verified Corporate Account', color: 'var(--blue-lt)', bg: 'rgba(34,87,197,0.08)', border: 'rgba(34,87,197,0.2)' },
+            { icon: <ShieldCheck size={13} />, text: 'Manual Receipt Verification', color: '#0A7A32', bg: 'rgba(10,122,50,0.08)', border: 'rgba(10,122,50,0.2)' },
+            { icon: <CheckCircle size={13} />, text: '100% Safe & Direct', color: '#8B6914', bg: 'rgba(240,184,0,0.08)', border: 'rgba(240,184,0,0.25)' },
           ].map((b, i) => (
             <div key={i} style={{
               display: 'flex', alignItems: 'center', gap: 8,
@@ -203,9 +204,9 @@ export default function PaymentMethods() {
         }}>
           <ShieldCheck size={20} color="#0A7A32" style={{ flexShrink: 0, marginTop: 2 }} />
           <div>
-            <div style={{ fontWeight: 800, fontSize: 14, color: '#0A7A32', marginBottom: 6 }}>Your Payment is Secure</div>
+            <div style={{ fontWeight: 800, fontSize: 14, color: '#0A7A32', marginBottom: 6 }}>Direct &amp; Safe Payments</div>
             <div style={{ color: 'var(--text-b)', fontSize: 13, lineHeight: 1.7 }}>
-              All card transactions are processed via Paystack's PCI-DSS Level 1 compliant gateway. We never store card information. Look for the padlock icon in your browser — this confirms a secure connection.
+              All orders are completed safely via direct corporate bank transfers to our official Sterling Bank account (with manual receipt confirmation) or via POS and cash at our physical showroom locations in Port Harcourt.
             </div>
           </div>
         </div>

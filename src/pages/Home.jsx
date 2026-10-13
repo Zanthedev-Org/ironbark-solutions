@@ -426,7 +426,7 @@ export default function Home() {
           {[
             { icon: <Truck size={20} />, title: 'Fast Delivery', sub: 'Citywide Port Harcourt' },
             { icon: <ShieldCheck size={20} />, title: 'Genuine Products', sub: '100% authentic brands' },
-            { icon: <CheckCircle size={20} />, title: 'Secure Payment', sub: 'Moniepoint & transfers' },
+            { icon: <CheckCircle size={20} />, title: 'Bank Transfer & POS', sub: 'Sterling Bank & in-store' },
             { icon: <RefreshCcw size={20} />, title: 'No Returns', sub: 'All sales are final' },
           ].map((t, i) => (
             <div key={i} className="sc-trust-strip__item">
